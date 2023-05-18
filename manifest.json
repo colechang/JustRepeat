@@ -8,5 +8,9 @@
         "default_popup": "index.html",
         "default_title":"Just Repeat"
     },
-    "default_locate":"en"
+    "default_locate":"en",
+    "run_at": "document_end",
+    "permissions":[
+        "activeTab"
+    ]
 }   

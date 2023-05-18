@@ -48,6 +48,18 @@
     minutes = (totalSeconds - seconds)/60;
     return new String(minutes + ":" + seconds);
 }*/
+
+const getActiveTabUrl = () => {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    const activeTab = tabs[0];
+    console.log(activeTab.url);
+    // Do something with the URL
+  });
+};
+getActiveTabUrl();
+
+
+
 var inputLeft = document.getElementById("input-left");
 var inputRight = document.getElementById("input-right");
 
@@ -111,3 +123,6 @@ inputRight.addEventListener("mousedown", function() {
 inputRight.addEventListener("mouseup", function() {
 	thumbRight.classList.remove("active");
 });
+function defineVideoController(){
+
+}
