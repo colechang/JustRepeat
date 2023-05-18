@@ -1,0 +1,12 @@
+{
+    "name": "Just Repeat",
+    "version": "1.0.0",
+    "description": "This is an extension to repeat from certain points of a youtube video. So we can skip all the boring stuff of a video",
+    "manifest_version": 3,
+    "author": "Cole Chang",
+    "action": {
+        "default_popup": "index.html",
+        "default_title":"Just Repeat"
+    },
+    "default_locate":"en"
+}   
