@@ -9,14 +9,30 @@
         "default_title":"Just Repeat"
     },
     "default_locate":"en",
-    "run_at": "document_end",
     "permissions":[
-        "activeTab"
+        "activeTab",
+        "storage",
+        "tabs"
     ],
+    "host_permissions":["https://*.youtube.com/*"],
     "content_scripts":[
         {
-        "matches":["<all_urls>"],
+        "matches":["https://*.youtube.com/*"],
         "js":["inject.js"]
         }
-    ]
+    ],
+    "background":{
+        "service_worker": "background.js"
+    },
+    "web_accessible_resources": [
+        {
+          "resources": [
+            "assets/loop.png",
+            "assets/bookmark.png",
+            "assets/loopRed50.png",
+            "assets/loopRed100.png"
+          ],
+          "matches": ["https://*.youtube.com/*"]
+        }
+      ]
 }   
