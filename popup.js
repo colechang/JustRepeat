@@ -1,45 +1,4 @@
-
-//video length
-//var length=0;
-//default start and end length
-//var s = floor(length*0.25);
-//var e = floor(length*0.75);
-
-// var bs = {
-//     //quartile formula
-//     setttings:{
-//         start: (length+1)*0.25,
-//         end: (length+1)*0.75,
-//         repeat: false,
-//         audioBoolean: false,
-
-//     },
-//     mediaElements:[]
-// };
-
-/*function checkForVideo(node, parent, added) {
-    // Only proceed with supposed removal if node is missing from DOM
-    if (!added && document.body.contains(node)) {
-      return;
-    }
-    if (
-      node.nodeName === "VIDEO" ||
-      (node.nodeName === "AUDIO" && tc.settings.audioBoolean)
-    ) {
-      if (added) {
-        node.vsc = new tc.videoController(node, parent);
-      } else {
-        if (node.vsc) {
-          node.vsc.remove();
-        }
-      }
-    } else if (node.children != undefined) {
-      for (var i = 0; i < node.children.length; i++) {
-        const child = node.children[i];
-        checkForVideo(child, child.parentNode || parent, added);
-      }
-    }
-  }
+import { activeTab, activeTab, activeTab } from "./utils";
   function getMinuteSecondsTime(seconds)
 {
     totalSeconds = Math.round(seconds);
@@ -47,18 +6,7 @@
     if(seconds < 10) seconds = "0" + seconds;
     minutes = (totalSeconds - seconds)/60;
     return new String(minutes + ":" + seconds);
-}*/
-
-const getActiveTabUrl = () => {
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    const activeTab = tabs[0];
-    console.log(activeTab.url);
-    // Do something with the URL
-  });
-};
-getActiveTabUrl();
-
-
+}
 
 var inputLeft = document.getElementById("input-left");
 var inputRight = document.getElementById("input-right");
@@ -123,6 +71,61 @@ inputRight.addEventListener("mousedown", function() {
 inputRight.addEventListener("mouseup", function() {
 	thumbRight.classList.remove("active");
 });
-function defineVideoController(){
 
-}
+document.addEventListener("DOMContentLoaded", async () => {
+  const activeTab = await activeTab();
+  const queryParameters = activeTab.url.split("?")[1];
+  const urlParameters = new URLSearchParams(queryParameters);
+
+  const currentVideo = urlParameters.get("v");
+
+  if (activeTab.url.includes("youtube.com/watch") && currentVideo) {
+    chrome.storage.sync.get([currentVideo], (data) => {
+      const currentVideoLoops = data[currentVideo] ? JSON.parse(data[currentVideo]) : [];
+
+      viewLoops(currentVideoLoops);
+    });
+  } else {
+    const container = document.getElementsByClassName("container")[0];
+
+    container.innerHTML = '<div class="title">This is not a youtube video page.</div>';
+  }
+});
+
+
+const viewLoops= (currentVideoLoops=[])=>{
+  const loopElements = document.getElementById("loops");
+  loopElements.innerHTML="";
+  if (loopElements.length > 0) {
+    for (let i = 0; i < loopElements.length; i++) {
+      const loop = loopElements[i];
+      addNewBookmark(loopElements, loop);
+    }
+  } else {
+    
+    loopElements.innerHTML = '<i class="row">No loop set</i>';
+  }
+
+  return;
+};
+
+const addNewBookmark = (loops, loop) => {
+  const loopTitleElement = document.createElement("div");
+  const controlsElement = document.createElement("div");
+  const newLoopElement = document.createElement("div");
+
+  loopTitleElement.textContent = loop.desc;
+  loopTitleElement.className = "loop-title";
+  controlsElement.className = "loop-controls";
+
+  setLooopAttributes("play", onPlay, controlsElement);
+  setLoopAttributes("delete", onDelete, controlsElement);
+
+  newLoopElement.id = "bookmark-" + bookmark.time;
+  newLoopElement.className = "bookmark";
+  newLoopElement.setAttribute("timestamp", bookmark.time);
+
+  newLoopElement.appendChild(loopTitleElement);
+  newLoopElement.appendChild(controlsElement);
+  loops.appendChild(newLoopElement);
+};

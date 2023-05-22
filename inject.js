@@ -1,6 +1,7 @@
 (()=>{
     let youtubeLeftConrols,youtubePlayer;
     let currentVideo="";
+    let loopVideoStart = [];
     chrome.runtime.onMessage.addListener((obj,sender,response)=>{
         const{type,value,videoId} =obj;
         if(type==="NEW"){
@@ -8,8 +9,16 @@
             newVideoLoaded();
         }
     });
-    const newVideoLoaded=()=>{
+    const fetchLoops = ()=>{
+        return new Promise((resolve)=>{
+            chrome.storage.sync.get([currentVideo],(obj)=>{
+                resolve(obj[currentVideo = videoId]?JSON.parse(obj[currentVideo]):[])
+            })
+        })
+    }
+    const newVideoLoaded = async () => {
         const loopBtnExists = document.getElementsByClassName("loop-btn")[0];
+        loopVideoStart  =await fetchLoops();
         if(!loopBtnExists){
             const loopBtn = document.createElement("img")
             loopBtn.src =chrome.runtime.getURL("assets/loopRed50.png")
@@ -23,27 +32,30 @@
             loopBtn.addEventListener("click",addNewLoopEventHandler);
         }
     }
+    const addNewLoopEventHandler= async ()=>{
+        const currentTime = youtubePlayer.currentTime;
+        const newLoopStart = {
+            time:currentTime,
+            desc:"Start Loop at "+ getTime(currentTime),
+
+        };
+        loopVideoStart = await fetchLoops();
+        console.log(newLoopStart)
+        chrome.storage.sync.set({
+            [currentVideo]: JSON.stringify([...loopVideoStart, newLoopStart].sort((a,b)=> a.time-b.time))
+        })
+    }
     newVideoLoaded();
     
 })();
-var video = getVideo();
-var observer = new MutationObserver(function(mutations){
-})
+const getTime=t=>{
+    var date = new Date(0);
+    date.setSeconds(t);
+    return date.toISOString().substring(11,8);
+};
 
-function checkforVideo(){
-    let b = document.getElementsByTagName(
-        "video")
-    if (b){
-        return true;
-    }
-    //no video on webpage
-    else{
-        return false;
-    }
-}
 function getVideo(){
-    ytplayer = document.getElementsByTagName('video')[0];
-    console.log("got Video")
+    ytplayer =document.getElementsByClassName("video-stream")[0]
     return ytplayer
 }
 function getCurrentTime(){
@@ -51,19 +63,9 @@ function getCurrentTime(){
     console.log(t.currentTime)
     return t.currentTime
 }
-// function getCurrentTimeElement(){
-//     currentTime = document.getElementsByClassName("ytp-time-current")[0];
-//     return currentTime
-// }
-
-function getCurrentTime(c){
-    return c.innerText
-}
-//class="ytp-time-current"
-
 function getDuration(){
-    duration = document.getElementsByClassName("ytp-time-duration")[0];
-    return duration.innerText()
+    duration = getVideo();
+    return duration.duration
 }
 function playVid(video){
     video.play()
@@ -71,3 +73,12 @@ function playVid(video){
 function pauseVid(video){
     video.pause()
 }
+function setCurrentTime(time){
+    getVideo().currentTime = time;
+}
+
+//have to add mutation observer to watch if the video.currentTime passes the desired loop end point
+//implement check to see if end point is at least a 1s larger then start loop
+//function to clear the loop marks
+//
+
