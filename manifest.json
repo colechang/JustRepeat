@@ -5,7 +5,7 @@
     "manifest_version": 3,
     "author": "Cole Chang",
     "action": {
-        "default_popup": "index.html",
+        "default_popup": "popup.html",
         "default_title":"Just Repeat"
     },
     "default_locate":"en",

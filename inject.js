@@ -7,7 +7,15 @@
         if(type==="NEW"){
             currentVideo=videoId;
             newVideoLoaded();
+        }else if (type==="PLAY"){
+            youtubePlayer.currentTime = value
+        } else if(type==="DELETE"){
+            loopVideoStart=loopVideoStart.filter((b)=>b.time != value);
+            chrome.storage.sync.set({[currentVideo]:JSON.stringify(loopVideoStart)})
+
+            response(loopVideoStart)
         }
+
     });
     const fetchLoops = ()=>{
         return new Promise((resolve)=>{
@@ -18,7 +26,7 @@
     }
     const newVideoLoaded = async () => {
         const loopBtnExists = document.getElementsByClassName("loop-btn")[0];
-        loopVideoStart  =await fetchLoops();
+        loopVideoStart = await fetchLoops();
         if(!loopBtnExists){
             const loopBtn = document.createElement("img")
             loopBtn.src =chrome.runtime.getURL("assets/loopRed50.png")
