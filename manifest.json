@@ -1,6 +1,6 @@
 {
     "name": "Just Repeat",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "description": "This is an extension to repeat from certain points of a youtube video. So we can skip all the boring stuff of a video",
     "manifest_version": 3,
     "author": "Cole Chang",
@@ -8,11 +8,9 @@
         "default_popup": "popup.html",
         "default_title":"Just Repeat"
     },
-    "default_locate":"en",
     "permissions":[
-        "activeTab",
-        "storage",
-        "tabs"
+        "tabs",
+        "storage"
     ],
     "host_permissions":["https://*.youtube.com/*"],
     "content_scripts":[
@@ -28,9 +26,9 @@
         {
           "resources": [
             "assets/loop.png",
-            "assets/bookmark.png",
-            "assets/loopRed50.png",
-            "assets/loopRed100.png"
+            "assets/play.png",
+            "assets/delete.png",
+            "assets/save.png"
           ],
           "matches": ["https://*.youtube.com/*"]
         }
