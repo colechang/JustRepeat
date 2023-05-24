@@ -77,12 +77,6 @@ const toHHMMSS = (secs) => {
         .filter((v,i) => v !== "00" || i > 0)
         .join(":")
 }
-
-
-const getTime = SECONDS => {
-    new Date(SECONDS * 1000).toISOString().substring(11, 16)
-};
-
 //have to add mutation observer to watch if the video.currentTime passes the desired loop end point
 //implement check to see if end point is at least a 1s larger then start loop
 //function to clear the loop marks
@@ -90,3 +84,5 @@ const getTime = SECONDS => {
 //feature to label the loop
 
 
+//for testing
+    //block all cookies and scripts when tab closes or refreshed to avoid extension context invalidated error
