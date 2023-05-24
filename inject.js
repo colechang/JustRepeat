@@ -83,29 +83,6 @@ const getTime = SECONDS => {
     new Date(SECONDS * 1000).toISOString().substring(11, 16)
 };
 
-/*function getVideo(){
-    ytplayer =document.getElementsByClassName("video-stream")[0]
-    return ytplayer
-}
-function getCurrentTime(){
-    t=getVideo()
-    console.log(t.currentTime)
-    return t.currentTime
-}
-function getDuration(){
-    duration = getVideo();
-    return duration.duration
-}
-function playVid(video){
-    video.play()
-}
-function pauseVid(video){
-    video.pause()
-}
-function setCurrentTime(time){
-    getVideo().currentTime = time;
-}*/
-
 //have to add mutation observer to watch if the video.currentTime passes the desired loop end point
 //implement check to see if end point is at least a 1s larger then start loop
 //function to clear the loop marks
