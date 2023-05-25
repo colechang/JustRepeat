@@ -2,7 +2,9 @@
     let youtubeLeftControls, youtubePlayer;
     let currentVideo="";
     let loopVideoStart = [];
+   
 
+    //retrieve loops to send to storage for popup to show
     const fetchLoops = () => {
         return new Promise((resolve) => {
           chrome.storage.sync.get([currentVideo], (obj) => {
@@ -11,18 +13,21 @@
         });
       };
     
-
+    //creation of a new loop
+    //create and send attributes(timestamp,description)
+    //edited array to sort loop from recent to least recent based on current time
     const addNewLoopEventHandler = async ()=>{
         const currentTime = youtubePlayer.currentTime;
+        const duration = youtubePlayer.duration;
         const newLoopStart = {
             time:currentTime,
-            desc:"Start Loop at "+ toHHMMSS(currentTime),
+            desc:"Start Loop at "+ toHHMMSS(currentTime)+"-"+toHHMMSS(Math.min(duration,currentTime+10)),
         };
 
         loopVideoStart = await fetchLoops();
 
         chrome.storage.sync.set({
-            [currentVideo]: JSON.stringify([...loopVideoStart, newLoopStart].sort((a,b)=> a.time-b.time))
+            [currentVideo]: JSON.stringify([...loopVideoStart, newLoopStart].sort((a,b)=> b.time-a.time))
         })
     }
 
@@ -64,6 +69,7 @@
         }
     });
     newVideoLoaded();
+
 })();
 
 const toHHMMSS = (secs) => {
@@ -82,7 +88,9 @@ const toHHMMSS = (secs) => {
 //function to clear the loop marks
 //add multiple loops for 1 video
 //feature to label the loop
-
+//should only have 1 mutation observer to prevent 2 loops from altering current time videos
+//most recent played loop becomes the active loop and top of the list, add css to hightlight the active one (colour top one red)
+//dont need mutation observer since current
 
 //for testing
     //block all cookies and scripts when tab closes or refreshed to avoid extension context invalidated error
