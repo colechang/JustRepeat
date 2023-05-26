@@ -2,7 +2,7 @@
     let youtubeLeftControls, youtubePlayer;
     let currentVideo="";
     let loopVideoStart = [];
-   
+    let duration;
 
     //retrieve loops to send to storage for popup to show
     const fetchLoops = () => {
@@ -18,11 +18,11 @@
     //edited array to sort loop from recent to least recent based on current time
     const addNewLoopEventHandler = async ()=>{
         const currentTime = youtubePlayer.currentTime;
-        const duration = youtubePlayer.duration;
         const newLoopStart = {
             time:currentTime,
-            desc:"Start Loop at "+ toHHMMSS(currentTime)+"-"+toHHMMSS(Math.min(duration,currentTime+10)),
+            desc:"Start Loop at "+ toHHMMSS(currentTime)+"-"+toHHMMSS(Math.min(youtubePlayer.duration,currentTime+10)),
         };
+        duration = Math.min(youtubePlayer.duration,currentTime+10)
 
         loopVideoStart = await fetchLoops();
 
@@ -60,14 +60,34 @@
             currentVideo=videoId;
             newVideoLoaded();
         }else if (type==="PLAY"){
-            youtubePlayer.currentTime = value
+            youtubePlayer.currentTime = value;
+            trackTime(value,value+10);
+            
+            //signal current loop and add this to the top of the loop list
+            //signal css to highlight active loop
+            //set active loop duration
         } else if(type==="DELETE"){
             loopVideoStart=loopVideoStart.filter((b)=>b.time != value);
             chrome.storage.sync.set({[currentVideo]:JSON.stringify(loopVideoStart)})
-
+            trackTime()
             response(loopVideoStart)
         }
+
     });
+
+    const trackTime=(value,duration,type)=>{
+        if(type==="PLAY"){
+            youtubePlayer.addEventListener("timeupdate",(event)=>{
+                if(youtubePlayer.currentTime>=duration){
+                    youtubePlayer.currentTime=value;
+                }
+            });
+        }
+        else{
+            return
+        }
+    }
+    
     newVideoLoaded();
 
 })();
@@ -83,14 +103,11 @@ const toHHMMSS = (secs) => {
         .filter((v,i) => v !== "00" || i > 0)
         .join(":")
 }
-//have to add mutation observer to watch if the video.currentTime passes the desired loop end point
+
 //implement check to see if end point is at least a 1s larger then start loop
-//function to clear the loop marks
-//add multiple loops for 1 video
+//feature to clear all the loop marks
 //feature to label the loop
-//should only have 1 mutation observer to prevent 2 loops from altering current time videos
 //most recent played loop becomes the active loop and top of the list, add css to hightlight the active one (colour top one red)
-//dont need mutation observer since current
 
 //for testing
     //block all cookies and scripts when tab closes or refreshed to avoid extension context invalidated error
