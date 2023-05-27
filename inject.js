@@ -2,6 +2,7 @@
     let youtubeLeftControls, youtubePlayer;
     let currentVideo = "";
     let loopVideoStart = [];
+    let timeUpdateHandler = null; // Reference to the timeupdate event listener
   
     // Retrieve loops to send to storage for the popup to show
     const fetchLoops = () => {
@@ -50,7 +51,7 @@
         youtubeLeftControls.appendChild(loopBtn);
         loopBtn.addEventListener("click", addNewLoopEventHandler);
       }
-    }
+    };
   
     chrome.runtime.onMessage.addListener((obj, sender, response) => {
       const { type, value, videoId } = obj;
@@ -59,17 +60,19 @@
         newVideoLoaded();
       } else if (type === "PLAY") {
         youtubePlayer.currentTime = value;
-        const timeUpdateHandler = () => {
-          trackTime(value, youtubePlayer.currentTime+5);
+  
+        timeUpdateHandler = () => {
+          trackTime(value, youtubePlayer.duration);
         };
+  
         youtubePlayer.addEventListener("timeupdate", timeUpdateHandler);
       } else if (type === "DELETE") {
         loopVideoStart = loopVideoStart.filter((b) => b.time !== value);
         chrome.storage.sync.set({ [currentVideo]: JSON.stringify(loopVideoStart) });
-        const timeUpdateHandler = () => {
-          trackTime(value, youtubePlayer.currentTime+5);
-        };
+  
         youtubePlayer.removeEventListener("timeupdate", timeUpdateHandler);
+        timeUpdateHandler = null;
+  
         response(loopVideoStart);
       }
     });
@@ -90,7 +93,7 @@
         .map((v) => (v < 10 ? "0" + v : v))
         .filter((v, i) => v !== "00" || i > 0)
         .join(":");
-    };
+    }
   
     newVideoLoaded();
   })();
