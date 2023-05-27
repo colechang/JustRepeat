@@ -62,7 +62,7 @@
         youtubePlayer.currentTime = value;
   
         timeUpdateHandler = () => {
-          trackTime(value, youtubePlayer.duration);
+          trackTime(Number(value), Number(Math.min(Number(value)+10,youtubePlayer.duration)));
         };
   
         youtubePlayer.addEventListener("timeupdate", timeUpdateHandler);
@@ -78,6 +78,9 @@
     });
   
     const trackTime = (value, duration) => {
+        console.log(typeof value)
+        console.log(typeof duration)
+
       if (youtubePlayer.currentTime >= duration) {
         youtubePlayer.currentTime = value;
       }
