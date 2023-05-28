@@ -3,6 +3,8 @@
     let currentVideo = "";
     let loopVideoStart = [];
     let timeUpdateHandler = null; // Reference to the timeupdate event listener
+    let activeTimeUpdateHandler = null; // Reference to the active timeupdate event listener
+    let loopRange = null; // Reference to the range input element
   
     // Retrieve loops to send to storage for the popup to show
     const fetchLoops = () => {
@@ -50,7 +52,37 @@
   
         youtubeLeftControls.appendChild(loopBtn);
         loopBtn.addEventListener("click", addNewLoopEventHandler);
+  
+        // Create range input for loop end time
+        loopRange = document.createElement("input");
+        loopRange.type = "range";
+        loopRange.min = "0";
+        loopRange.max = youtubePlayer.duration.toString();
+        loopRange.step = "1";
+        loopRange.value = youtubePlayer.currentTime.toString(); // Initial value set to video duration
+        loopRange.addEventListener("input", onRangeInput);
+        loopRange.style.color = '#FF0000'
+        youtubeLeftControls.appendChild(loopRange);
       }
+    };
+  
+    const onRangeInput = () => {
+      const endTime = parseFloat(loopRange.value);
+      if (endTime <= youtubePlayer.duration) {
+        youtubePlayer.currentTime = endTime;
+      }
+    };
+  
+    const toHHMMSS = (secs) => {
+      var sec_num = parseInt(secs, 10);
+      var hours = Math.floor(sec_num / 3600);
+      var minutes = Math.floor((sec_num % 3600) / 60);
+      var seconds = sec_num % 60;
+  
+      return [hours, minutes, seconds]
+        .map((v) => (v < 10 ? "0" + v : v))
+        .filter((v, i) => v !== "00" || i > 0)
+        .join(":");
     };
   
     chrome.runtime.onMessage.addListener((obj, sender, response) => {
@@ -61,43 +93,38 @@
       } else if (type === "PLAY") {
         youtubePlayer.currentTime = value;
   
-        timeUpdateHandler = () => {
-          trackTime(Number(value), Number(Math.min(Number(value)+10,youtubePlayer.duration)));
+        if (activeTimeUpdateHandler) {
+          youtubePlayer.removeEventListener("timeupdate", activeTimeUpdateHandler);
+        }
+  
+        activeTimeUpdateHandler = (e) => {
+          if (youtubePlayer.currentTime >= Number(value)) {
+            youtubePlayer.currentTime = Number(value);
+          }
         };
   
-        youtubePlayer.addEventListener("timeupdate", timeUpdateHandler);
+        youtubePlayer.addEventListener("timeupdate", activeTimeUpdateHandler);
       } else if (type === "DELETE") {
         loopVideoStart = loopVideoStart.filter((b) => b.time !== value);
         chrome.storage.sync.set({ [currentVideo]: JSON.stringify(loopVideoStart) });
   
-        youtubePlayer.removeEventListener("timeupdate", timeUpdateHandler);
-        timeUpdateHandler = null;
-  
-        response(loopVideoStart);
+        if (activeTimeUpdateHandler) {
+          youtubePlayer.removeEventListener("timeupdate", activeTimeUpdateHandler);
+        }
       }
     });
   
-    const trackTime = (value, duration) => {
-        console.log(typeof value)
-        console.log(typeof duration)
-
-      if (youtubePlayer.currentTime >= duration) {
-        youtubePlayer.currentTime = value;
+    const observer = new MutationObserver(() => {
+      if (document.getElementsByClassName("video-stream").length > 0) {
+        observer.disconnect();
+        youtubePlayer = document.getElementsByClassName("video-stream")[0];
+        youtubePlayer.addEventListener("timeupdate", timeUpdateHandler);
       }
-    };
+    });
   
-    const toHHMMSS = (secs) => {
-      var sec_num = parseInt(secs, 10);
-      var hours = Math.floor(sec_num / 3600);
-      var minutes = Math.floor(sec_num / 60) % 60;
-      var seconds = sec_num % 60;
-  
-      return [hours, minutes, seconds]
-        .map((v) => (v < 10 ? "0" + v : v))
-        .filter((v, i) => v !== "00" || i > 0)
-        .join(":");
-    }
-  
-    newVideoLoaded();
+    observer.observe(document.documentElement, {
+      childList: true,
+      subtree: true,
+    });
   })();
   

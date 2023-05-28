@@ -1,0 +1,16 @@
+//implement check to see if end point is at least a 1s larger then start loop
+//function to clear the loop marks
+//add multiple loops for 1 video
+//feature to clear all the loop marks
+//feature to label the loop
+//should only have 1 mutation observer to prevent 2 loops from altering current time videos
+//most recent played loop becomes the active loop and top of the list, add css to hightlight the active one (colour top one red)
+//dont need mutation observer since current
+
+//for testing
+    //block all cookies and scripts when tab closes or refreshed to avoid extension context invalidated error
+
+
+//signal current loop and add this to the top of the loop list
+//signal css to highlight active loop
+//set active loop duration
