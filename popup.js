@@ -17,6 +17,7 @@ const addNewLoop = (loops, loop) => {
 
   newLoopElement.appendChild(loopTitleElement);
   newLoopElement.appendChild(controlsElement);
+  newLoopElement.style.fontSize = "20px"
   loops.appendChild(newLoopElement);
 };
 
