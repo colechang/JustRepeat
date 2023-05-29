@@ -39,7 +39,6 @@
   });
 };*/
 
-
     const addNewLoopEventHandler = async () => {
         const currentTime = youtubePlayer.currentTime;
         const endTime = parseFloat(loopRange.value);
@@ -63,7 +62,6 @@
         });
     };
 
-
     const newVideoLoaded = async () => {
         const loopBtnExists = document.getElementsByClassName("loop-btn")[0];
 
@@ -86,9 +84,8 @@
             loopRange = document.createElement("input");
             loopRange.type = "range";
             loopRange.min = "0";
-            loopRange.max = toHHMMSS(youtubePlayer.duration);
-            loopRange.step = "1";
-            loopRange.value = toHHMMSS(youtubePlayer.currentTime); // Initial value set to video duration
+            loopRange.step = "0.01";
+            loopRange.value = "50" // Initial value set to video duration
             loopRange.addEventListener("input", onRangeInput);
 
             youtubeLeftControls.appendChild(loopRange);
@@ -103,14 +100,36 @@
     };
 
     const onRangeInput = () => {
-        const endTime = parseFloat(loopRange.value);
-        /*if (endTime <= youtubePlayer.duration) {
-            youtubePlayer.currentTime = endTime;
-        }*/
-        const rangeValue = document.getElementById("range-value");
-        rangeValue.textContent = toHHMMSS(endTime);
+        input = document.getElementById("range-value")
+        updateMaxValue(youtubePlayer.duration)
+        var value = input.value;
+        var hours = Math.floor(value / 3600);
+        var minutes = Math.floor((value % 3600) / 60);
+        var seconds = value % 60;
 
+        var formattedTime = padZero(hours) + ':' + padZero(minutes) + ':' + padZero(seconds);
+        document.getElementById('formatted-time').innerText = formattedTime;
+
+        /*const endTime = parseFloat(loopRange.value);
+        if (endTime <= youtubePlayer.duration) {
+            youtubePlayer.currentTime = endTime;
+        }
+        const rangeValue = document.getElementById("range-value");
+        rangeValue.textContent = toHHMMSS(endTime);*/
     };
+    /*const formatTime = () =>{
+        var input = document.getElementsById("loop-range")
+        var value = input.value.replace(/\D/g,'');
+        if(value.length > 6){
+            value = value.substr(0,6);
+        }
+
+        var hours = value.substr(0,2)
+        var minutes = value.substr(2,2);
+        var seconds = value.substr(4,2)
+        value = hours + ':' + minutes + ':' + seconds;
+        input.value = value
+    }*/
 
     const toHHMMSS = (secs) => {
         var sec_num = parseInt(secs, 10);
@@ -123,7 +142,6 @@
             .filter((v, i) => v !== "00" || i > 0)
             .join(":");
     };
-
 
     chrome.runtime.onMessage.addListener((obj, sender, response) => {
         const { type, value, videoId } = obj;
@@ -138,7 +156,7 @@
             }
             //RIGHT HERE PASS ENDTIME INSTEAD AND VALUE TO BE CHANGED TO
             activeTimeUpdateHandler = (e) => {
-                if (youtubePlayer.currentTime >= Number(value)) {
+                if (youtubePlayer.currentTime >= Number(value)+5.0) {
                     youtubePlayer.currentTime = Number(value);
                 }
             };
@@ -153,8 +171,7 @@
             }
         }
     });
-
-    const hmsToSecondsOnly = (str) => {
+    /*const hmsToSecondsOnly = (str) => {
         var p = str.split(':'),
             s = 0, m = 1;
     
@@ -164,5 +181,13 @@
         }
     
         return s;
-    }
+    }*/
 })();
+
+function padZero(num) {
+    return num.toString().padStart(2, '0');
+}
+function updateMaxValue(input) {
+    var maxHours = 24;
+    input.max = maxHours * 3600;
+}
