@@ -51,3 +51,9 @@
 	flex: auto;
 	text-align: right;
   }
+
+  .loop.active-loop {
+	background-color: #66afe9;
+	color: white;
+  }
+  

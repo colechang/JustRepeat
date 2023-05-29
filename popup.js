@@ -40,22 +40,35 @@ const onPlay = async (e) => {
   const loopTime = e.target.parentNode.parentNode.getAttribute("timestamp");
   const activeTabURL = await getActiveTabURL();
 
+  // Send message to content script to play the loop
   chrome.tabs.sendMessage(activeTabURL.id, {
     type: "PLAY",
     value: loopTime,
   });
-};
+
+  // Highlight the active loop
+  const loopElements = document.getElementsByClassName("loop");
+  for (let i = 0; i < loopElements.length; i++) {
+    const loopElement = loopElements[i];
+    if (loopElement.getAttribute("timestamp") === loopTime) {
+      loopElement.classList.add("active-loop");
+    } else {
+      loopElement.classList.remove("active-loop");
+    }
+  }
+}
 
 const onDelete = async (e) => {
   const activeTabURL = await getActiveTabURL();
   const loopTime = e.target.parentNode.parentNode.getAttribute("timestamp");
-  const loopElementToDelete = document.getElementById("loop-" + loopTime);
+  const loopElementToDelete = e.target.parentNode.parentNode;
   loopElementToDelete.parentNode.removeChild(loopElementToDelete);
 
+  // Send message to content script to delete the loop
   chrome.tabs.sendMessage(activeTabURL.id, {
     type: "DELETE",
     value: loopTime,
-  }, viewLoops);
+  });
 };
 
 const setLoopAttributes = (src, eventListener, controlParentElement) => {
@@ -86,3 +99,4 @@ document.addEventListener("DOMContentLoaded", async () => {
     container.innerHTML = '<div class="title">This is not a YouTube video page.</div>';
   }
 });
+

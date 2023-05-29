@@ -2,7 +2,6 @@
     let youtubeLeftControls, youtubePlayer;
     let currentVideo = "";
     let loopVideoStart = [];
-    let timeUpdateHandler = null; // Reference to the timeupdate event listener
     let activeTimeUpdateHandler = null; // Reference to the active timeupdate event listener
     let loopRange = null; // Reference to the range input element
 
@@ -18,15 +17,44 @@
     // Creation of a new loop
     // Create and send attributes (timestamp, description)
     // Edit array to sort loops from the most recent to the least recent based on the current time
+    /*const addNewLoopEventHandler = async () => {
+  const currentTime = youtubePlayer.currentTime;
+  const endTime = parseFloat(loopRange.value);
+  
+  if (endTime <= currentTime) {
+    return; // End time should be greater than the current time
+  }
+
+  const newLoop = {
+    start: currentTime,
+    end: endTime,
+    desc: "Loop at " + toHHMMSS(currentTime) + " - " + toHHMMSS(endTime),
+  };
+  
+  loopVideoStart = await fetchLoops();
+  loopVideoStart.push(newLoop);
+  
+  chrome.storage.sync.set({
+    [currentVideo]: JSON.stringify(loopVideoStart),
+  });
+};*/
+
+
     const addNewLoopEventHandler = async () => {
         const currentTime = youtubePlayer.currentTime;
+        const endTime = parseFloat(loopRange.value);
+
+        if (endTime <= currentTime) {
+            return; // End time should be greater than the current time
+        }
         const newLoopStart = {
             time: currentTime,
+            end: endTime,
             desc:
                 "Loop at " +
                 toHHMMSS(currentTime) +
                 "-" +
-                toHHMMSS(Math.min(youtubePlayer.duration, currentTime + 10)),
+                toHHMMSS(endTime),
         };
         loopVideoStart = await fetchLoops();
 
@@ -34,6 +62,7 @@
             [currentVideo]: JSON.stringify([...loopVideoStart, newLoopStart].sort((a, b) => b.time - a.time)),
         });
     };
+
 
     const newVideoLoaded = async () => {
         const loopBtnExists = document.getElementsByClassName("loop-btn")[0];
@@ -57,9 +86,9 @@
             loopRange = document.createElement("input");
             loopRange.type = "range";
             loopRange.min = "0";
-            loopRange.max = youtubePlayer.duration.toString();
+            loopRange.max = toHHMMSS(youtubePlayer.duration);
             loopRange.step = "1";
-            loopRange.value = youtubePlayer.currentTime.toString(); // Initial value set to video duration
+            loopRange.value = toHHMMSS(youtubePlayer.currentTime); // Initial value set to video duration
             loopRange.addEventListener("input", onRangeInput);
 
             youtubeLeftControls.appendChild(loopRange);
@@ -95,6 +124,7 @@
             .join(":");
     };
 
+
     chrome.runtime.onMessage.addListener((obj, sender, response) => {
         const { type, value, videoId } = obj;
         if (type === "NEW") {
@@ -122,18 +152,5 @@
                 youtubePlayer.removeEventListener("timeupdate", activeTimeUpdateHandler);
             }
         }
-    });
-
-    const observer = new MutationObserver(() => {
-        if (document.getElementsByClassName("video-stream").length > 0) {
-            observer.disconnect();
-            youtubePlayer = document.getElementsByClassName("video-stream")[0];
-            youtubePlayer.addEventListener("timeupdate", timeUpdateHandler);
-        }
-    });
-
-    observer.observe(document.documentElement, {
-        childList: true,
-        subtree: true,
     });
 })();
