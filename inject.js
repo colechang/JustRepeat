@@ -136,7 +136,7 @@
             if (activeTimeUpdateHandler) {
                 youtubePlayer.removeEventListener("timeupdate", activeTimeUpdateHandler);
             }
-
+            //RIGHT HERE PASS ENDTIME INSTEAD AND VALUE TO BE CHANGED TO
             activeTimeUpdateHandler = (e) => {
                 if (youtubePlayer.currentTime >= Number(value)) {
                     youtubePlayer.currentTime = Number(value);
@@ -153,4 +153,16 @@
             }
         }
     });
+
+    const hmsToSecondsOnly = (str) => {
+        var p = str.split(':'),
+            s = 0, m = 1;
+    
+        while (p.length > 0) {
+            s += m * parseInt(p.pop(), 10);
+            m *= 60;
+        }
+    
+        return s;
+    }
 })();
