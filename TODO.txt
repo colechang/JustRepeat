@@ -1,19 +1,19 @@
-//implement check to see if end point is at least a 1s larger then start loop
-//function to clear the loop marks
-//add multiple loops for 1 video
-//feature to clear all the loop marks
-//feature to label the loop
-//most recent played loop becomes the active loop and top of the list, add css to hightlight the active one (colour top one red)
+[x] implement check to see if end point is at least a 1s larger then start loop
+[x] add multiple loops for 1 video
+[] feature to clear all the loop marks
+[] feature to label the loop
+[x] most recent played loop becomes the active loop and top of the list, add css to hightlight the active one (colour top one red)
 
-//signal current loop and add this to the top of the loop list
+[x] signal current loop and add this to the top of the loop list
+[x] signal css to highlight active loop
+[x] set active loop duration DONE
 
-//when current time moves (event listener), minimum on input slider should change
+[x] when current time moves (event listener), minimum on input slider should change
 
+[x] Transform the seconds to HHMMSS on an input field
+[x] Error line Inject Line 140-142
 
-Transform the seconds to HHMMSS on an input field
-Error line Inject Line 140-142
-
-range input on "input" event listener to be the endtime
-make ranged input larger and have the duration be longer than 1:40 ranged input max is only 100 ISSUE
-Need to change the type in input element, have to add a pattern for the input, maybe make it text based and add an increment/decrement value
+[x] range input on "input" event listener to be the endtime
+[x] make ranged input larger and have the duration be longer than 1:40 ranged input max is only 100 ISSUE
+[x] Need to change the type in input element, have to add a pattern for the input, maybe make it text based and add an increment/decrement value
 

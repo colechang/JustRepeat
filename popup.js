@@ -33,7 +33,6 @@ const viewLoops = (currentVideoLoops = []) => {
   } else {
     loopElement.innerHTML = '<i class="row">No loop set</i>';
   }
-
   return;
 };
 

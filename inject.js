@@ -14,27 +14,6 @@
         });
     };
 
-    // Creation of a new loop
-    // Create and send attributes (timestamp, description)
-    // Edit array to sort loops from the most recent to the least recent based on the current time
-    /*const addNewLoopEventHandler = async () => {
-    const currentTime = youtubePlayer.currentTime;
-    const endTime = parseFloat(loopRange.value);
-
-  const newLoop = {
-    start: currentTime,
-    end: endTime,
-    desc: "Loop at " + toHHMMSS(currentTime) + " - " + toHHMMSS(endTime),
-  };
-  
-  loopVideoStart = await fetchLoops();
-  loopVideoStart.push(newLoop);
-  
-  chrome.storage.sync.set({
-    [currentVideo]: JSON.stringify(loopVideoStart),
-  });
-};*/
-
     const addNewLoopEventHandler = async () => {
         const currentTime = youtubePlayer.currentTime;
         const endTime = parseFloat(loopRange.value);
@@ -129,11 +108,9 @@
         } else if (type === "PLAY") {
             youtubePlayer.currentTime = value;
 
-            //remove current event listener and attach active one
             if (activeTimeUpdateHandler) {
                 youtubePlayer.removeEventListener("timeupdate", activeTimeUpdateHandler);
             }
-            //RIGHT HERE PASS ENDTIME INSTEAD AND VALUE TO BE CHANGED TO
             activeTimeUpdateHandler = (e) => {
                 if (youtubePlayer.currentTime >= Number(end)) {
                     youtubePlayer.currentTime = Number(value);
