@@ -20,10 +20,6 @@
     /*const addNewLoopEventHandler = async () => {
     const currentTime = youtubePlayer.currentTime;
     const endTime = parseFloat(loopRange.value);
-  
-  if (endTime <= currentTime) {
-    return; // End time should be greater than the current time
-  }
 
   const newLoop = {
     start: currentTime,
@@ -80,7 +76,6 @@
 
             youtubeLeftControls.appendChild(loopBtn);
             loopBtn.addEventListener("click", addNewLoopEventHandler);
-            let max = youtubePlayer.duration
             // Create range input for loop end time
             loopRange = document.createElement("input");
             loopRange.id = "loop-range"
@@ -108,31 +103,11 @@
         var hours = Math.floor(value / 3600);
         var minutes = Math.floor((value % 3600) / 60);
         var seconds = value % 60;
-        //value = end of loop time mark
+        //value = end of loop timestamp
 
         var formattedTime = padZero(hours) + ':' + padZero(minutes) + ':' + padZero(seconds);
         document.getElementById('range-value').innerText = formattedTime;
-
-        /*const endTime = parseFloat(loopRange.value);
-        if (endTime <= youtubePlayer.duration) {
-            youtubePlayer.currentTime = endTime;
-        }
-        const rangeValue = document.getElementById("range-value");
-        rangeValue.textContent = toHHMMSS(endTime);*/
     };
-    /*const formatTime = () =>{
-        var input = document.getElementsById("loop-range")
-        var value = input.value.replace(/\D/g,'');
-        if(value.length > 6){
-            value = value.substr(0,6);
-        }
-
-        var hours = value.substr(0,2)
-        var minutes = value.substr(2,2);
-        var seconds = value.substr(4,2)
-        value = hours + ':' + minutes + ':' + seconds;
-        input.value = value
-    }*/
 
     const toHHMMSS = (secs) => {
         var sec_num = parseInt(secs, 10);
@@ -147,19 +122,20 @@
     };
 
     chrome.runtime.onMessage.addListener((obj, sender, response) => {
-        const { type, value, videoId } = obj;
+        const { type, value, videoId, end } = obj;
         if (type === "NEW") {
             currentVideo = videoId;
             newVideoLoaded();
         } else if (type === "PLAY") {
             youtubePlayer.currentTime = value;
 
+            //remove current event listener and attach active one
             if (activeTimeUpdateHandler) {
                 youtubePlayer.removeEventListener("timeupdate", activeTimeUpdateHandler);
             }
             //RIGHT HERE PASS ENDTIME INSTEAD AND VALUE TO BE CHANGED TO
             activeTimeUpdateHandler = (e) => {
-                if (youtubePlayer.currentTime >= Number(value) + 5.0) {
+                if (youtubePlayer.currentTime >= Number(end)) {
                     youtubePlayer.currentTime = Number(value);
                 }
             };
@@ -174,17 +150,6 @@
             }
         }
     });
-    /*const hmsToSecondsOnly = (str) => {
-        var p = str.split(':'),
-            s = 0, m = 1;
-    
-        while (p.length > 0) {
-            s += m * parseInt(p.pop(), 10);
-            m *= 60;
-        }
-    
-        return s;
-    }*/
 })();
 
 function padZero(num) {

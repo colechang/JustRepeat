@@ -14,6 +14,7 @@ const addNewLoop = (loops, loop) => {
   newLoopElement.id = "loop-" + loop.time;
   newLoopElement.className = "loop";
   newLoopElement.setAttribute("timestamp", loop.time);
+  newLoopElement.setAttribute("endTime",loop.end);
 
   newLoopElement.appendChild(loopTitleElement);
   newLoopElement.appendChild(controlsElement);
@@ -39,11 +40,13 @@ const viewLoops = (currentVideoLoops = []) => {
 const onPlay = async (e) => {
   const loopTime = e.target.parentNode.parentNode.getAttribute("timestamp");
   const activeTabURL = await getActiveTabURL();
+  const loopEndTime = e.target.parentNode.parentNode.getAttribute("endTime");
 
   // Send message to content script to play the loop
   chrome.tabs.sendMessage(activeTabURL.id, {
     type: "PLAY",
     value: loopTime,
+    end: loopEndTime
   });
 
   // Highlight the active loop
@@ -61,6 +64,7 @@ const onPlay = async (e) => {
 const onDelete = async (e) => {
   const activeTabURL = await getActiveTabURL();
   const loopTime = e.target.parentNode.parentNode.getAttribute("timestamp");
+  const loopEndTime = e.target.parentNode.parentNode.getAttribute("endTime");
   const loopElementToDelete = e.target.parentNode.parentNode;
   loopElementToDelete.parentNode.removeChild(loopElementToDelete);
 
@@ -68,7 +72,8 @@ const onDelete = async (e) => {
   chrome.tabs.sendMessage(activeTabURL.id, {
     type: "DELETE",
     value: loopTime,
-  });
+    end: loopEndTime,
+  },viewLoops);
 };
 
 const setLoopAttributes = (src, eventListener, controlParentElement) => {
@@ -99,4 +104,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     container.innerHTML = '<div class="title">This is not a YouTube video page.</div>';
   }
 });
-
