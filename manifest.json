@@ -1,7 +1,7 @@
 {
     "name": "Just Repeat",
-    "version": "0.1.0",
-    "description": "This is an extension to repeat from certain points of a youtube video. So we can skip all the boring stuff of a video",
+    "version": "1.0.0",
+    "description": "This is an extension to repeat certain points of a youtube video. So we can enjoy all the good stuff",
     "manifest_version": 3,
     "author": "Cole Chang",
     "action": {
@@ -16,7 +16,7 @@
     "content_scripts":[
         {
         "matches":["https://*.youtube.com/*"],
-        "css": ["fix.css"],
+        "css": ["input.css"],
         "js":["inject.js"]
         }
     ],

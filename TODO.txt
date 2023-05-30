@@ -1,9 +1,10 @@
 [x] implement check to see if end point is at least a 1s larger then start loop
 [x] add multiple loops for 1 video
-[] feature to clear all the loop marks
-[] feature to label the loop
+[] feature to clear all the loop marks -> maybe top right of popup
+[] feature to label the loop 
 [x] most recent played loop becomes the active loop and top of the list, add css to hightlight the active one (colour top one red)
 
+[] Decrease text size
 [x] signal current loop and add this to the top of the loop list
 [x] signal css to highlight active loop
 [x] set active loop duration DONE
@@ -17,3 +18,11 @@
 [x] make ranged input larger and have the duration be longer than 1:40 ranged input max is only 100 ISSUE
 [x] Need to change the type in input element, have to add a pattern for the input, maybe make it text based and add an increment/decrement value
 
+[] extension logo art maybe peat symbol for music in red youtube bubble
+[] change font and design, smoother lines and bigger buttons,
+[] make buttons less pixelated and jagged -> different file types?
+[] ask others for suggestions
+[] loop button format and add change in colour onhover and onclick
+
+[] add onhover when using input slider to signify to user that the slider is used to pick the end time
+[] display error when user tries to make a loop where the end time is less than the start time, quick pop up in grey like a yt pause button would appear like, *youtubePlayer*

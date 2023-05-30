@@ -1,0 +1,16 @@
+input[type="range"] {
+  /* Set the track color */
+  --track-color: #ff0000;
+  /* Set the thumb color */
+  --thumb-color: #ff0000;
+}
+
+/* Styling for the range input track */
+input[type="range"]::-webkit-slider-runnable-track {
+  background-color: var(--track-color);
+}
+
+/* Styling for the range input thumb */
+input[type="range"]::-webkit-slider-thumb {
+  background-color: var(--thumb-color);
+}

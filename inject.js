@@ -55,6 +55,12 @@
 
             youtubeLeftControls.appendChild(loopBtn);
             loopBtn.addEventListener("click", addNewLoopEventHandler);
+
+            //Css file for input slider
+            const cssLink = document.createElement("link")
+            cssLink.rel = "stylesheet";
+            cssLink.type = "text/css"
+            cssLink.href = "input.css"
             // Create range input for loop end time
             loopRange = document.createElement("input");
             loopRange.id = "loop-range"
@@ -82,7 +88,6 @@
         var hours = Math.floor(value / 3600);
         var minutes = Math.floor((value % 3600) / 60);
         var seconds = value % 60;
-        //value = end of loop timestamp
 
         var formattedTime = padZero(hours) + ':' + padZero(minutes) + ':' + padZero(seconds);
         document.getElementById('range-value').innerText = formattedTime;
