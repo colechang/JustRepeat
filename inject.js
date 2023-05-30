@@ -18,8 +18,8 @@
     // Create and send attributes (timestamp, description)
     // Edit array to sort loops from the most recent to the least recent based on the current time
     /*const addNewLoopEventHandler = async () => {
-  const currentTime = youtubePlayer.currentTime;
-  const endTime = parseFloat(loopRange.value);
+    const currentTime = youtubePlayer.currentTime;
+    const endTime = parseFloat(loopRange.value);
   
   if (endTime <= currentTime) {
     return; // End time should be greater than the current time
@@ -44,6 +44,7 @@
         const endTime = parseFloat(loopRange.value);
 
         if (endTime <= currentTime) {
+            console.log("end time must be greater than start time")
             return; // End time should be greater than the current time
         }
         const newLoopStart = {
@@ -79,13 +80,15 @@
 
             youtubeLeftControls.appendChild(loopBtn);
             loopBtn.addEventListener("click", addNewLoopEventHandler);
-
+            let max = youtubePlayer.duration
             // Create range input for loop end time
             loopRange = document.createElement("input");
+            loopRange.id = "loop-range"
             loopRange.type = "range";
             loopRange.min = "0";
-            loopRange.step = "0.01";
-            loopRange.value = "50" // Initial value set to video duration
+            loopRange.step = "1";
+            loopRange.value = "0";
+            loopRange.max = "3600"
             loopRange.addEventListener("input", onRangeInput);
 
             youtubeLeftControls.appendChild(loopRange);
@@ -93,22 +96,22 @@
             // Create placeholder for the selected range value
             const rangeValue = document.createElement("span");
             rangeValue.id = "range-value";
-            rangeValue.textContent = toHHMMSS(parseFloat(loopRange.value));
-
+            rangeValue.textContent = "00:00:00";
             youtubeLeftControls.appendChild(rangeValue);
         }
     };
 
     const onRangeInput = () => {
-        input = document.getElementById("range-value")
-        updateMaxValue(youtubePlayer.duration)
+        input = document.getElementById("loop-range");
+        input.max = youtubePlayer.duration
         var value = input.value;
         var hours = Math.floor(value / 3600);
         var minutes = Math.floor((value % 3600) / 60);
         var seconds = value % 60;
+        //value = end of loop time mark
 
         var formattedTime = padZero(hours) + ':' + padZero(minutes) + ':' + padZero(seconds);
-        document.getElementById('formatted-time').innerText = formattedTime;
+        document.getElementById('range-value').innerText = formattedTime;
 
         /*const endTime = parseFloat(loopRange.value);
         if (endTime <= youtubePlayer.duration) {
@@ -156,7 +159,7 @@
             }
             //RIGHT HERE PASS ENDTIME INSTEAD AND VALUE TO BE CHANGED TO
             activeTimeUpdateHandler = (e) => {
-                if (youtubePlayer.currentTime >= Number(value)+5.0) {
+                if (youtubePlayer.currentTime >= Number(value) + 5.0) {
                     youtubePlayer.currentTime = Number(value);
                 }
             };
@@ -186,8 +189,4 @@
 
 function padZero(num) {
     return num.toString().padStart(2, '0');
-}
-function updateMaxValue(input) {
-    var maxHours = 24;
-    input.max = maxHours * 3600;
 }
