@@ -41,12 +41,14 @@ const onPlay = async (e) => {
   const loopTime = e.target.parentNode.parentNode.getAttribute("timestamp");
   const activeTabURL = await getActiveTabURL();
   const loopEndTime = e.target.parentNode.parentNode.getAttribute("endTime");
+  const loopId = e.target.parentNode.parentNode.getAttribute("loop-id ");
 
   // Send message to content script to play the loop
   chrome.tabs.sendMessage(activeTabURL.id, {
     type: "PLAY",
     value: loopTime,
-    end: loopEndTime
+    end: loopEndTime,
+    id: loopId
   });
 
   // Highlight the active loop
