@@ -14,7 +14,7 @@ const addNewLoop = (loops, loop) => {
   newLoopElement.id = "loop-" + loop.time;
   newLoopElement.className = "loop";
   newLoopElement.setAttribute("timestamp", loop.time);
-  newLoopElement.setAttribute("endTime",loop.end);
+  newLoopElement.setAttribute("endTime", loop.end);
   newLoopElement.setAttribute("loop-id", loop.loopId);
 
   newLoopElement.appendChild(loopTitleElement);
@@ -41,7 +41,7 @@ const onPlay = async (e) => {
   const loopTime = e.target.parentNode.parentNode.getAttribute("timestamp");
   const activeTabURL = await getActiveTabURL();
   const loopEndTime = e.target.parentNode.parentNode.getAttribute("endTime");
-  const loopId = e.target.parentNode.parentNode.getAttribute("loop-id ");
+  const loopId = e.target.parentNode.parentNode.getAttribute("loop-id");
 
   // Send message to content script to play the loop
   chrome.tabs.sendMessage(activeTabURL.id, {
@@ -55,7 +55,7 @@ const onPlay = async (e) => {
   const loopElements = document.getElementsByClassName("loop");
   for (let i = 0; i < loopElements.length; i++) {
     const loopElement = loopElements[i];
-    if (loopElement.getAttribute("timestamp") === loopTime) {
+    if (loopElement.getAttribute("loop-id") === loopId) {
       loopElement.classList.add("active-loop");
     } else {
       loopElement.classList.remove("active-loop");
