@@ -106,6 +106,7 @@
             .filter((v, i) => v !== "00" || i > 0)
             .join(":");
     };
+
     chrome.runtime.onMessage.addListener((obj, sender, response) => {
         const { type, value, videoId, end, id } = obj;
         if (type === "NEW") {
@@ -126,17 +127,21 @@
         } else if (type === "DELETE") {
             loopVideoStart = loopVideoStart.filter((b) => b.loopId !== id);
             chrome.storage.sync.set({ [currentVideo]: JSON.stringify(loopVideoStart) });
+            response(loopVideoStart)
 
             if (activeTimeUpdateHandler) {
                 youtubePlayer.removeEventListener("timeupdate", activeTimeUpdateHandler);
             }
+
         }
     });
+
     const generateLoopId = () => {
         return Math.random().toString(36).substring(2, 9);
       };
 
 })();
+
 function padZero(num) {
     return num.toString().padStart(2, '0');
 }
