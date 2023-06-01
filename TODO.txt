@@ -4,7 +4,7 @@
 [] feature to label the loop 
 [x] most recent played loop becomes the active loop and top of the list, add css to hightlight the active one (colour top one red)
 
-[] Decrease text size
+[x] Decrease text size
 [x] signal current loop and add this to the top of the loop list
 [x] signal css to highlight active loop
 [x] set active loop duration DONE
@@ -18,8 +18,8 @@
 [x] make ranged input larger and have the duration be longer than 1:40 ranged input max is only 100 ISSUE
 [x] Need to change the type in input element, have to add a pattern for the input, maybe make it text based and add an increment/decrement value
 
-[] extension logo art maybe peat symbol for music in red youtube bubble
-[] change font and design, smoother lines and bigger buttons,
+[x] extension logo art maybe peat symbol for music in red youtube bubble
+[~] change font and design, smoother lines and bigger buttons,
 [] make buttons less pixelated and jagged -> different file types?
 [] ask others for suggestions
 [] loop button format and add change in colour onhover and onclick
