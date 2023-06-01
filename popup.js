@@ -15,6 +15,7 @@ const addNewLoop = (loops, loop) => {
   newLoopElement.className = "loop";
   newLoopElement.setAttribute("timestamp", loop.time);
   newLoopElement.setAttribute("endTime",loop.end);
+  newLoopElement.setAttribute("loop-id", loop.loopId);
 
   newLoopElement.appendChild(loopTitleElement);
   newLoopElement.appendChild(controlsElement);
@@ -64,6 +65,7 @@ const onDelete = async (e) => {
   const activeTabURL = await getActiveTabURL();
   const loopTime = e.target.parentNode.parentNode.getAttribute("timestamp");
   const loopEndTime = e.target.parentNode.parentNode.getAttribute("endTime");
+  const loopId = e.target.parentNode.parentNode.getAttribute("loop-id");
   const loopElementToDelete = e.target.parentNode.parentNode;
   loopElementToDelete.parentNode.removeChild(loopElementToDelete);
 
@@ -72,7 +74,8 @@ const onDelete = async (e) => {
     type: "DELETE",
     value: loopTime,
     end: loopEndTime,
-  },viewLoops);
+    id: loopId
+  }, viewLoops);
 };
 
 const setLoopAttributes = (src, eventListener, controlParentElement) => {

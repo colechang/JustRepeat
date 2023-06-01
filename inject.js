@@ -20,9 +20,11 @@
 
         if (endTime <= currentTime) {
             console.log("end time must be greater than start time")
+            //add fading image to show error 
             return; // End time should be greater than the current time
         }
         const newLoopStart = {
+            loopId: generateLoopId(),
             time: currentTime,
             end: endTime,
             desc:
@@ -106,7 +108,7 @@
     };
 
     chrome.runtime.onMessage.addListener((obj, sender, response) => {
-        const { type, value, videoId, end } = obj;
+        const { type, value, videoId, end, id } = obj;
         if (type === "NEW") {
             currentVideo = videoId;
             newVideoLoaded();
@@ -124,7 +126,7 @@
 
             youtubePlayer.addEventListener("timeupdate", activeTimeUpdateHandler);
         } else if (type === "DELETE") {
-            loopVideoStart = loopVideoStart.filter((b) => b.time !== value);
+            loopVideoStart = loopVideoStart.filter((b) => b.loopId !== id);
             chrome.storage.sync.set({ [currentVideo]: JSON.stringify(loopVideoStart) });
 
             if (activeTimeUpdateHandler) {
@@ -134,7 +136,7 @@
     });
 
     const generateLoopId = () => {
-        return Math.random().toString(36).substr(2, 9);
+        return Math.random().toString(36).substring(2, 9);
       };
 
 })();
