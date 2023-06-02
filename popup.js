@@ -9,8 +9,8 @@ const addNewLoop = (loops, loop) => {
   loopTitleElement.className = "loop-title";
   controlsElement.className = "loop-controls";
 
-  setLoopAttributes("Play", onPlay, controlsElement);
-  setLoopAttributes("Delete", onDelete, controlsElement);
+  setLoopAttributes("play", onPlay, controlsElement);
+  setLoopAttributes("delete", onDelete, controlsElement);
   newLoopElement.id = "loop-" + loop.time;
   newLoopElement.className = "loop";
   newLoopElement.setAttribute("timestamp", loop.time);

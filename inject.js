@@ -132,7 +132,6 @@
             if (activeTimeUpdateHandler) {
                 youtubePlayer.removeEventListener("timeupdate", activeTimeUpdateHandler);
             }
-
         }
     });
 

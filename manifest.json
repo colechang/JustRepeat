@@ -41,8 +41,7 @@
           "resources": [
             "assets/loop.png",
             "assets/play.png",
-            "assets/delete.png",
-            "assets/save.png"
+            "assets/delete.png"
           ],
           "matches": ["https://*.youtube.com/*"]
         }
