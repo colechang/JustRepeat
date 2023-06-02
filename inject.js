@@ -17,13 +17,17 @@
     const addNewLoopEventHandler = async () => {
         const currentTime = youtubePlayer.currentTime;
         const endTime = parseFloat(loopRange.value);
+        const messageElement = document.getElementById("fade-text")
 
         if (endTime <= currentTime) {
-            
-            console.log("end time must be greater than start time")
 
+            messageElement.style.display="block";
+            // console.log("end time must be greater than start time")
             //add fading image to show error like youtube pause icon
-            return; // End time should be greater than the current time
+            return; 
+        }
+        else{
+            messageElement.style.display="none";
         }
         const newLoopStart = {
             loopId: generateLoopId(),
@@ -86,7 +90,11 @@
             rangeValue.textContent = "00:00:00";
             youtubeLeftControls.appendChild(rangeValue);
 
-             
+
+            const fadeText = document.createElement("h1")
+            fadeText.textContent = "End Time Must be Greater Than Start Time"
+            fadeText.id ="fade-text"
+            youtubePlayer.parentElement.parentElement.appendChild(fadeText)
         }
     };
 
