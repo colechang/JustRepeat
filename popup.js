@@ -19,7 +19,7 @@ const addNewLoop = (loops, loop) => {
 
   newLoopElement.appendChild(loopTitleElement);
   newLoopElement.appendChild(controlsElement);
-  newLoopElement.style.fontSize = "20px"
+  // newLoopElement.style.fontSize = "20px"
   loops.appendChild(newLoopElement);
 };
 
@@ -82,7 +82,7 @@ const onDelete = async (e) => {
 
 const setLoopAttributes = (src, eventListener, controlParentElement) => {
   const controlElement = document.createElement("img");
-
+  // controlElement.id = src;
   controlElement.src = "assets/" + src + ".png";
   controlElement.title = src;
   controlElement.addEventListener("click", eventListener);

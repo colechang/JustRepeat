@@ -1,7 +1,7 @@
 .container {
 	width: 280px;
 	color: #314d3e;
-	font-family: Arial, sans-serif;
+	font-family: "Montserrat", sans-serif;
   }
   
   .title {
@@ -57,8 +57,8 @@
   }
   
   .loop-controls img {
-	width: 18px;
-	height: 18px;
+	width: 25px;
+	height: 25px;
 	margin: 0 4px;
 	cursor: pointer;
 	opacity: 0.7;
@@ -68,4 +68,3 @@
   .loop-controls img:hover {
 	opacity: 1;
   }
-  

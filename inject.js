@@ -19,8 +19,10 @@
         const endTime = parseFloat(loopRange.value);
 
         if (endTime <= currentTime) {
+            
             console.log("end time must be greater than start time")
-            //add fading image to show error 
+
+            //add fading image to show error like youtube pause icon
             return; // End time should be greater than the current time
         }
         const newLoopStart = {
@@ -46,6 +48,14 @@
         loopVideoStart = await fetchLoops();
 
         if (!loopBtnExists) {
+
+            //Css file for loop Btn and input slider
+            const cssLink = document.createElement("link")
+            cssLink.rel = "stylesheet";
+            cssLink.type = "text/css"
+            cssLink.href = "inject.css"
+            document.head.appendChild(cssLink)
+
             const loopBtn = document.createElement("img");
 
             loopBtn.src = chrome.runtime.getURL("assets/loop.png");
@@ -57,12 +67,7 @@
 
             youtubeLeftControls.appendChild(loopBtn);
             loopBtn.addEventListener("click", addNewLoopEventHandler);
-
-            //Css file for input slider
-            const cssLink = document.createElement("link")
-            cssLink.rel = "stylesheet";
-            cssLink.type = "text/css"
-            cssLink.href = "input.css"
+            
             // Create range input for loop end time
             loopRange = document.createElement("input");
             loopRange.id = "loop-range"
@@ -80,6 +85,8 @@
             rangeValue.id = "range-value";
             rangeValue.textContent = "00:00:00";
             youtubeLeftControls.appendChild(rangeValue);
+
+             
         }
     };
 
@@ -137,7 +144,7 @@
 
     const generateLoopId = () => {
         return Math.random().toString(36).substring(2, 9);
-      };
+    };
 
 })();
 

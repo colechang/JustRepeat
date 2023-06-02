@@ -3,9 +3,9 @@ input[type="range"] {
   width: 20%;
   height: 8px;
   background-color: #ddd;
-  border-radius: 3px;
+  border-radius: 5px;
   outline: none;
-  margin: 8px 0;
+  margin: 10px 0;
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -21,8 +21,8 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 input[type="range"]::-webkit-slider-runnable-track {
-  height: 6px;
-  border-radius: 3px;
+  height: 8px;
+  border-radius: 5px;
   background: #ff0000;
 }
 
@@ -66,4 +66,16 @@ input[type="range"]::-moz-range-track {
   height: 8px;
   border-radius: 5px;
   background: #ddd;
+}
+
+.loop-btn{
+  cursor: pointer;
+	opacity: 0.7;
+	transition: opacity 0.3s ease;
+  width: 15px;
+	height: 15px;
+	margin: 0 4px
+}
+.loop-btn img:hover{
+  opacity: 1;
 }
