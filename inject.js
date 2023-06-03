@@ -17,9 +17,9 @@
     const addNewLoopEventHandler = async () => {
         const currentTime = youtubePlayer.currentTime;
         const endTime = parseFloat(loopRange.value);
-        const messageElement = document.getElementById("fade-text")
+        const fadeSvg = document.getElementById("fade-text")
         if (endTime <= currentTime) {
-
+            fadeSvg.classList.add("fade-text")
             return; 
         }
         const newLoopStart = {
@@ -58,6 +58,7 @@
             loopBtn.src = chrome.runtime.getURL("assets/loop.png");
             loopBtn.className = "ytp-button " + "loop-btn";
             loopBtn.title = "Click to pick start time";
+            loopBtn.alt = "Loop Button"
 
             youtubeLeftControls = document.getElementsByClassName("ytp-left-controls")[0];
             youtubePlayer = document.getElementsByClassName("video-stream")[0];
@@ -86,9 +87,14 @@
 
             const fadeText = document.createElement("img")
             fadeText.src = chrome.runtime.getURL("assets/errorIcon.svg")
-            fadeText.id = "fade-text"
-            fadeText.alt = "Error Icon"
+            fadeText.id = "fade-text";
+            fadeText.alt = "Error Icon";
             youtubePlayer.parentElement.appendChild(fadeText)
+            
+            fadeText.addEventListener("animationend", () =>{
+                fadeText.classList.remove("fade-text")
+                console.log("animationENDED")
+            });
         }
     };
 
