@@ -18,7 +18,6 @@
         const currentTime = youtubePlayer.currentTime;
         const endTime = parseFloat(loopRange.value);
         const fadeSvg = document.getElementById("fade-text")
-        
         if (endTime <= currentTime) {
             fadeSvg.classList.add("fade-text")
             return; 
@@ -54,7 +53,6 @@
             cssLink.href = "inject.css"
             document.head.appendChild(cssLink)
 
-            //Loop button
             const loopBtn = document.createElement("img");
 
             loopBtn.src = chrome.runtime.getURL("assets/loop.png");
@@ -86,11 +84,13 @@
             rangeValue.textContent = "00:00:00";
             youtubeLeftControls.appendChild(rangeValue);
 
-            //Attach SVG to youtube video player
+            //Attach SVG to youtube video player with animation ending event listener
             const fadeText = document.createElement("img")
             fadeText.src = chrome.runtime.getURL("assets/errorIcon.svg")
             fadeText.id = "fade-text";
             fadeText.alt = "Error Icon";
+            fadeText.classList.add("fade-text-hidden");
+
             youtubePlayer.parentElement.parentElement.appendChild(fadeText)
 
             fadeText.addEventListener("animationstart", () =>{
@@ -134,8 +134,7 @@
         if (type === "NEW") {
             currentVideo = videoId;
             newVideoLoaded();
-        } 
-        else if (type === "PLAY") {
+        } else if (type === "PLAY") {
             youtubePlayer.currentTime = value;
 
             if (activeTimeUpdateHandler) {
@@ -147,9 +146,7 @@
                 }
             };
             youtubePlayer.addEventListener("timeupdate", activeTimeUpdateHandler);
-        } 
-        else if (type === "DELETE") {
-            
+        } else if (type === "DELETE") {
             loopVideoStart = loopVideoStart.filter((b) => b.loopId !== id);
             chrome.storage.sync.set({ [currentVideo]: JSON.stringify(loopVideoStart) });
             response(loopVideoStart)
@@ -159,14 +156,11 @@
             }
         }
     });
-
-    //Generates random loop IDs for every loop, to not get confused with other loops starting at same time
     const generateLoopId = () => {
         return Math.random().toString(36).substring(2, 9);
     };
 })();
 
-//Formats span for the video time
 function padZero(num) {
     return num.toString().padStart(2, '0');
 }
