@@ -18,15 +18,9 @@
         const currentTime = youtubePlayer.currentTime;
         const endTime = parseFloat(loopRange.value);
         const messageElement = document.getElementById("fade-text")
-
         if (endTime <= currentTime) {
-            messageElement.style.display="block";
-            // console.log("end time must be greater than start time")
-            //add fading image to show error like youtube pause icon
+
             return; 
-        }
-        else{
-            messageElement.style.display="none";
         }
         const newLoopStart = {
             loopId: generateLoopId(),
@@ -90,11 +84,10 @@
             youtubeLeftControls.appendChild(rangeValue);
 
 
-            const fadeText = document.createElement("svg")
-            fadeText.src = "assets/errorSymbol.svg"
+            const fadeText = document.createElement("img")
+            fadeText.src = chrome.runtime.getURL("assets/errorIcon.svg")
             fadeText.id = "fade-text"
-            fadeText.alt="Error Icon"
-            //    <object data="happy.svg" width="300" height="300"> </object>
+            fadeText.alt = "Error Icon"
             youtubePlayer.parentElement.appendChild(fadeText)
         }
     };

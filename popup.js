@@ -19,7 +19,6 @@ const addNewLoop = (loops, loop) => {
 
   newLoopElement.appendChild(loopTitleElement);
   newLoopElement.appendChild(controlsElement);
-  // newLoopElement.style.fontSize = "20px"
   loops.appendChild(newLoopElement);
 };
 
@@ -104,7 +103,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   } else {
     const container = document.getElementsByClassName("container")[0];
-
     container.innerHTML = '<div class="title">This is not a YouTube video page.</div>';
   }
 });
