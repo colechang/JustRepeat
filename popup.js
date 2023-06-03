@@ -30,7 +30,8 @@ const viewLoops = (currentVideoLoops = []) => {
       const loop = currentVideoLoops[i];
       addNewLoop(loopElement, loop);
     }
-  } else {
+  } 
+  else {
     loopElement.innerHTML = '<i class="row">No loop set</i>';
   }
   return;
@@ -56,7 +57,8 @@ const onPlay = async (e) => {
     const loopElement = loopElements[i];
     if (loopElement.getAttribute("loop-id") === loopId) {
       loopElement.classList.add("active-loop");
-    } else {
+    } 
+    else {
       loopElement.classList.remove("active-loop");
     }
   }
@@ -101,7 +103,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       viewLoops(currentVideoLoops);
     });
-  } else {
+  } 
+  else {
     const container = document.getElementsByClassName("container")[0];
     container.innerHTML = '<div class="title">This is not a YouTube video page.</div>';
   }

@@ -80,13 +80,13 @@ input[type="range"]::-moz-range-track {
   opacity: 1;
 }
 .fade-text{
-  width: 10%;
-  height: 10%;
+  width: 15%;
+  height: 15%;
   right: 50%;
   top: 50%;
   z-index: 10;
   transform: translate(50%,-50%);
-  animation: fadeOut 1.5s;
+  animation: fadeOut 1.4s;
   position: absolute;
 
 }

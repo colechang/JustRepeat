@@ -19,10 +19,10 @@
 [x] Need to change the type in input element, have to add a pattern for the input, maybe make it text based and add an increment/decrement value
 
 [x] extension logo art maybe peat symbol for music in red youtube bubble
-[~] change font and design, smoother lines and bigger buttons,
+[x] change font and design, smoother lines and bigger buttons,
 [x] make buttons less pixelated and jagged -> different file types?
 [] ask others for suggestions
 [x] loop button format and add change in colour onhover and onclick
 
 [] add onhover when using input slider to signify to user that the slider is used to pick the end time
-[] display error when user tries to make a loop where the end time is less than the start time, quick pop up in grey like a yt pause button would appear like, *youtubePlayer*
+[x] display error when user tries to make a loop where the end time is less than the start time, quick pop up in grey like a yt pause button would appear like, *youtubePlayer*
