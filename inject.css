@@ -86,10 +86,14 @@ input[type="range"]::-moz-range-track {
   top: 50%;
   z-index: 10;
   transform: translate(50%,-50%);
-  animation: fadeOut 1s;
+  animation: fadeOut 1.5s;
+  position: absolute;
 
 }
 @keyframes fadeOut {
   100% { opacity: 0; }
   0% { opacity: 1; }
+}
+.fade-text-hidden{
+  visibility: hidden;
 }

@@ -84,17 +84,22 @@
             rangeValue.textContent = "00:00:00";
             youtubeLeftControls.appendChild(rangeValue);
 
-
+            //Attach SVG to youtube video player with animation ending event listener
             const fadeText = document.createElement("img")
             fadeText.src = chrome.runtime.getURL("assets/errorIcon.svg")
             fadeText.id = "fade-text";
             fadeText.alt = "Error Icon";
-            youtubePlayer.parentElement.appendChild(fadeText)
+            youtubePlayer.parentElement.parentElement.appendChild(fadeText)
+
+            fadeText.addEventListener("animationstart", () =>{
+                fadeText.classList.remove("fade-text-hidden")
+            });
             
             fadeText.addEventListener("animationend", () =>{
                 fadeText.classList.remove("fade-text")
-                console.log("animationENDED")
+                fadeText.classList.add("fade-text-hidden")
             });
+            
         }
     };
 
@@ -149,11 +154,9 @@
             }
         }
     });
-
     const generateLoopId = () => {
         return Math.random().toString(36).substring(2, 9);
     };
-
 })();
 
 function padZero(num) {
