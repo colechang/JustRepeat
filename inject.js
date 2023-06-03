@@ -20,7 +20,6 @@
         const messageElement = document.getElementById("fade-text")
 
         if (endTime <= currentTime) {
-
             messageElement.style.display="block";
             // console.log("end time must be greater than start time")
             //add fading image to show error like youtube pause icon
@@ -91,10 +90,12 @@
             youtubeLeftControls.appendChild(rangeValue);
 
 
-            const fadeText = document.createElement("h1")
-            fadeText.textContent = "End Time Must be Greater Than Start Time"
-            fadeText.id ="fade-text"
-            youtubePlayer.parentElement.parentElement.appendChild(fadeText)
+            const fadeText = document.createElement("svg")
+            fadeText.src = "assets/errorSymbol.svg"
+            fadeText.id = "fade-text"
+            fadeText.alt="Error Icon"
+            //    <object data="happy.svg" width="300" height="300"> </object>
+            youtubePlayer.parentElement.appendChild(fadeText)
         }
     };
 
@@ -122,7 +123,7 @@
             .join(":");
     };
 
-    chrome.runtime.onMessage.addListener((obj, sender, response) => {
+    chrome.runtime.onMessage.addListener((obj, sender, response) => { 
         const { type, value, videoId, end, id } = obj;
         if (type === "NEW") {
             currentVideo = videoId;
