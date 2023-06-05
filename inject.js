@@ -27,9 +27,9 @@
             time: currentTime,
             end: endTime,
             desc:
-                "Loop at " +
+                // "Loop at " +
                 toHHMMSS(currentTime) +
-                "-" +
+                " - " +
                 toHHMMSS(endTime),
         };
         loopVideoStart = await fetchLoops();
@@ -101,7 +101,6 @@
                 fadeText.classList.remove("fade-text")
                 fadeText.classList.add("fade-text-hidden")
             });
-            
         }
     };
 
