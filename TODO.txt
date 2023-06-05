@@ -21,9 +21,9 @@
 [x] extension logo art maybe peat symbol for music in red youtube bubble
 [x] change font and design, smoother lines and bigger buttons,
 [x] make buttons less pixelated and jagged -> different file types?
-[] ask others for suggestions
+[x] ask others for suggestions
 [x] loop button format and add change in colour onhover and onclick
 
-[] add onhover when using input slider to signify to user that the slider is used to pick the end time
-[] make input slider slimmer 
+[x] add onhover when using input slider to signify to user that the slider is used to pick the end time
+[x] make input slider slimmer 
 [x] display error when user tries to make a loop where the end time is less than the start time, quick pop up in grey like a yt pause button would appear like, *youtubePlayer*
