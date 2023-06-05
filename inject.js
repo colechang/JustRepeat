@@ -41,7 +41,7 @@
             [currentVideo]: JSON.stringify([...loopVideoStart, newLoopStart].sort((a, b) => b.time - a.time)),
         });
     };
-
+    //variables and elements loaded on a video loaded
     const newVideoLoaded = async () => {
         const loopBtnExists = document.getElementsByClassName("loop-btn")[0];
 
@@ -124,7 +124,7 @@
             })
         }
     };
-
+    //input range slider
     const onRangeInput = () => {
         input = document.getElementById("loop-range");
         input.max = youtubePlayer.duration
@@ -136,7 +136,7 @@
         var formattedTime = padZero(hours) + ':' + padZero(minutes) + ':' + padZero(seconds);
         document.getElementById('range-value').innerText = formattedTime;
     };
-
+    //format time from seconds to 00:00:00
     const toHHMMSS = (secs) => {
         var sec_num = parseInt(secs, 10);
         var hours = Math.floor(sec_num / 3600);
