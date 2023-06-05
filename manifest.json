@@ -42,7 +42,8 @@
             "assets/loop.png",
             "assets/play.png",
             "assets/delete.png",
-            "assets/errorIcon.svg"
+            "assets/errorIcon.svg",
+            "assets/loopMadeIcon.svg"
           ],
           "matches": ["https://*.youtube.com/*"]
         }

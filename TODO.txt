@@ -1,7 +1,6 @@
 [x] implement check to see if end point is at least a 1s larger then start loop
 [x] add multiple loops for 1 video
 [] feature to clear all the loop marks -> maybe top right of popup
-[] feature to label the loop 
 [x] most recent played loop becomes the active loop and top of the list, add css to hightlight the active one (colour top one red)
 
 [x] Decrease text size

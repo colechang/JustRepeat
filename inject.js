@@ -18,9 +18,12 @@
         const currentTime = youtubePlayer.currentTime;
         const endTime = parseFloat(loopRange.value);
         const fadeSvg = document.getElementById("fade-text")
+        const loopMadeSvg = document.getElementById("loop-made")
         if (endTime <= currentTime) {
             fadeSvg.classList.add("fade-text")
             return; 
+        }else{
+            loopMadeSvg.classList.add("fade-text")
         }
         const newLoopStart = {
             loopId: generateLoopId(),
@@ -101,6 +104,24 @@
                 fadeText.classList.remove("fade-text")
                 fadeText.classList.add("fade-text-hidden")
             });
+
+            const loopMadeIcon = document.createElement("img")
+            loopMadeIcon.src = chrome.runtime.getURL("assets/loopMadeIcon.svg")
+            loopMadeIcon.id = "loop-made"
+            loopMadeIcon.alt = "Loop Made Icon"
+            loopMadeIcon.classList.add("fade-text-hidden")
+
+            youtubePlayer.parentElement.parentElement.appendChild(loopMadeIcon)
+
+            
+            loopMadeIcon.addEventListener("animationstart", () =>{
+                loopMadeIcon.classList.remove("fade-text-hidden")
+            })
+
+            loopMadeIcon.addEventListener("animationend", () =>{
+                loopMadeIcon.classList.remove("fade-text")
+                loopMadeIcon.classList.add("fade-text-hidden")
+            })
         }
     };
 
