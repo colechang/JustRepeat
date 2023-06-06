@@ -1,6 +1,5 @@
 [x] implement check to see if end point is at least a 1s larger then start loop
 [x] add multiple loops for 1 video
-[] feature to clear all the loop marks -> maybe top right of popup
 [x] most recent played loop becomes the active loop and top of the list, add css to hightlight the active one (colour top one red)
 
 [x] Decrease text size
@@ -27,4 +26,4 @@
 [x] make input slider slimmer 
 [x] display error when user tries to make a loop where the end time is less than the start time, quick pop up in grey like a yt pause button would appear like, *youtubePlayer*
 [] add button on fullscreen to play loop if only 1 loop exists
-[] add indicator to loop button like the not loop error icon
+[x] add indicator to loop button like the not loop error icon
