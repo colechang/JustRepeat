@@ -106,3 +106,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     container.innerHTML = '<div class="title">This is not a YouTube video page.</div>';
   }
 });
+
+document.getElementById("settingsBtn").addEventListener("click", openSettingsPage)
+
+const openSettingsPage = () => {
+  chrome.tabs.create({ url: "settings.html" });
+}
+

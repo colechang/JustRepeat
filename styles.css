@@ -2,35 +2,35 @@
 	width: 300px;
 	color: #314d3e;
 	font-family: "Merriweather"
-  }
-  
-  .title {
+}
+
+.title {
 	font-size: 18px;
 	font-weight: bold;
 	padding: 12px;
 	text-align: center;
-  }
-  
-  .textbox {
+}
+
+.textbox {
 	width: 100%;
 	font-size: 14px;
 	margin: 0;
 	padding: 4px 8px;
 	border: 1px solid #ccc;
 	border-radius: 4px;
-  }
-  
-  .textbox:focus {
+}
+
+.textbox:focus {
 	outline: 0;
 	border-color: #66afe9;
 	box-shadow: 0 0 4px rgba(102, 175, 233, 0.8);
-  }
-  
-  .loops {
+}
+
+.loops {
 	margin: 10px;
-  }
-  
-  .loop {
+}
+
+.loop {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -40,32 +40,49 @@
 	transition: background-color 0.3s ease;
 	cursor: pointer;
 	font-family: "Crimson Text"
-  }
-  
-  .loop:hover {
+}
+
+.loop:hover {
 	background-color: #f5f5f5;
-  }
-  
-  .loop.active-loop {
+}
+
+.loop.active-loop {
 	background-color: #66afe9;
 	color: white;
-  }
-  
-  .loop-title {
+}
+
+.loop-title {
 	flex: 1;
 	margin-right: 10px;
 	font-size: 30px;
-  }
-  
-  .loop-controls img {
+}
+
+.loop-controls img {
 	width: 25px;
 	height: 25px;
 	margin: 0 4px;
 	cursor: pointer;
 	opacity: 0.7;
 	transition: opacity 0.3s ease;
-  }
-  
-  .loop-controls img:hover {
+}
+
+.loop-controls img:hover {
 	opacity: 1;
-  }
+}
+
+#donation-button input[type="image"] {
+	width: 25px;
+	height: 25px;
+	opacity: 0.7;
+	transition: opacity 0.3s ease;
+}
+
+#settings-button {
+	width: 25px;
+	height: 25px;
+	opacity: 0.7;
+	transition: opacity 0.3s ease;
+	border: none;
+	padding: 0;
+	background: none;
+}
