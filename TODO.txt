@@ -30,5 +30,5 @@
 [] add button on fullscreen to play loop if only 1 loop exists
 [] Information list
 [] Edit Markdown page
-[] 
+[] Different language support -> add settings pages in different languages
 JustRepeat - Youtube Video Looper
