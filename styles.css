@@ -70,19 +70,35 @@
 	opacity: 1;
 }
 
+#donation-button{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
 #donation-button input[type="image"] {
-	width: 25px;
-	height: 25px;
+	width: 35px;
+	height: 35px;
 	opacity: 0.7;
 	transition: opacity 0.3s ease;
+	position: absolute;
+	bottom: 0;
+	right: 0;
 }
 
 #settings-button {
-	width: 25px;
-	height: 25px;
+	width: 35px;
+	height: 35px;
 	opacity: 0.7;
 	transition: opacity 0.3s ease;
 	border: none;
 	padding: 0;
 	background: none;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+.popupButtons{
+	position: relative;
+	padding-top: 80px;
 }

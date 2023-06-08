@@ -1,7 +1,9 @@
 <link href="styles.css" rel="stylesheet" type="text/css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Crimson+Text&family=Merriweather&family=Open+Sans&family=Roboto&display=swap" rel="stylesheet"> 
+<link
+  href="https://fonts.googleapis.com/css2?family=Crimson+Text&family=Merriweather&family=Open+Sans&family=Roboto&display=swap"
+  rel="stylesheet">
 <script type="module" src="popup.js"></script>
 
 <div class="container">
@@ -10,21 +12,24 @@
 
     <div class="loops" id="loops"></div>
   </div>
-</div> 
-
-<div>
-  <a href="settings.html" target="_blank">
-    <img src = "assets/settings.svg" id = "settings-button">
-  </a>
 </div>
 
-<div id ="donation-button">
-<form action="https://www.paypal.com/donate" method="post" target="_blank">
-  <input type="hidden" name="business" value="92R8XU3PX9JV6" />
-  <input type="hidden" name="no_recurring" value="0" />
-  <input type="hidden" name="currency_code" value="USD" />
-  <input type="image" src="assets/donation.svg" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-  <img alt="" border="0" src="https://www.paypal.com/en_CA/i/scr/pixel.gif" width="1" height="1" />
-  </form>
+<div class = "popupButtons">
+  <div>
+    <a href="settings.html" target="_blank">
+      <img src="assets/settings.svg" id="settings-button">
+    </a>
+  </div>
+
+  <div id="donation-button">
+    <form action="https://www.paypal.com/donate" method="post" target="_blank">
+      <input type="hidden" name="business" value="92R8XU3PX9JV6" />
+      <input type="hidden" name="no_recurring" value="0" />
+      <input type="hidden" name="currency_code" value="USD" />
+      <input type="image" src="assets/donation.svg" border="0" name="submit"
+        title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+      <img alt="" border="0" src="https://www.paypal.com/en_CA/i/scr/pixel.gif" width="1" height="1" />
+    </form>
+  </div>
+
 </div>
-  
