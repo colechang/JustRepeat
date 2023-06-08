@@ -23,3 +23,6 @@ body {
     list-style-type: disc;
     margin-left: 20px;
   }
+  img {
+    border-radius: 25px;
+  }
