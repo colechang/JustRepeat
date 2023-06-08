@@ -5,46 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Extension Settings</title>
   <link href="settings.css" rel="stylesheet" type="text/css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Crimson+Text&family=Merriweather&family=Open+Sans&family=Roboto&display=swap"
+    rel="stylesheet">
+
   <script type="module" src="settings.js"></script>
 </head>
+
 <body>
   <div class="container">
-    <h1>How to Use The Just Repeat Extension</h1>
-    <p>
+    <h1 class="step-header">How to Use The Just Repeat Extension</h1>
+    <p class="step-description">
       Once the extension is installed, you can use it to create and manage loops in YouTube videos.
       Here's how to use the extension:
     </p>
     <ol>
-      <li>
-        Open a YouTube video in your browser.
-      </li>
-      <li>
+      <div class="step">
+        <h1 class="step-number">1</h1>
+        <p class="step-description">Open a YouTube video in your browser.</p>
+      </div>
+      <div class="step">
+        <h1 class="step-number">2</h1>
+
         <img src="assets/rangeEndPoint.png" alt="Range Slider Icon">
-        Drag the range slider to select the end time of the loop.
-      </li>
-      <li>
-        <img src="assets/loopScreenshot.png" alt="Loop Button Icon" >
-        Click on the Loop button to create a loop at the youtube player current time (e.g. 0:02 - 06:09).
-      </li>
-      <li>
-        <div class="screenshot">
-        <img src="assets/loopCompleteScreenshot.png" alt="Loop Complete Icon">
-        If the loop was successfully made
+        <p class="step-description">Drag the range slider to select the end time of the loop.</p>
       </div>
-      </li>
-      <li>
-        <div class="screenshot">
-        <img src="assets/loopIncompleteScreenshot.png" alt="Loop Error Icon" >
-        If the loop was unsuccessful
+      <div class="step">
+        <h1 class="step-number">3</h1>
+
+        <img src="assets/loopScreenshot.png" alt="Loop Button Icon">
+        <p class="step-description">Click on the Loop button to create a loop at the youtube player current time (e.g.
+          0:02
+          - 06:09).</p>
       </div>
-      </li>
-      <li>
+      <div class="step">
+        <h1 class="step-number">4</h1>
+
+        <div class="screenshot">
+          <img src="assets/loopCompleteScreenshot.png" alt="Loop Complete Icon">
+        </div>
+        <p class="step-description">If the loop was successfully made</p>
+      </div>
+      <div class="step">
+        <h1 class="step-number">5</h1>
+
+        <div class="screenshot">
+          <img src="assets/loopIncompleteScreenshot.png" alt="Loop Error Icon">
+        </div>
+        <p class="step-description">If the loop was unsuccessful</p>
+      </div>
+      <div class="step">
+        <h1 class="step-number">6</h1>
         <img src="assets/popupExample.png" alt="Loop Added Icon">
-        The selected loop will be added to the list of loops for the current video.
-        To delete a loop, click on the delete button next to it in the loops list.
-        To select and play a loop, click on the play button next to it in the loops list.
-      </li>
+
+        <p class="step-description">The selected loop will be added to the list of loops for the current video.
+          To delete a loop, click on the delete button next to it in the loops list.
+          To select and play a loop, click on the play button next to it in the loops list.</p>
+      </div>
     </ol>
   </div>
 </body>
+
 </html>

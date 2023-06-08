@@ -1,33 +1,77 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f1f1f1;
+  font-family: "Merriweather";
+  background-color: #f5f5f5;
   padding: 20px;
 }
 
-h1 {
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.step {
   margin-bottom: 20px;
-  color: #333;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
 }
 
-h2 {
+.step:last-child {
+  margin-bottom: 0;
+}
+
+.step-header {
+  font-size: 24px;
+  font-weight: bold;
   margin-bottom: 10px;
-  color: #666;
 }
 
-p {
+.step-content {
   margin-bottom: 10px;
-  color: #666;
 }
 
-ul {
-  list-style-type: disc;
-  margin-left: 20px;
+.step-number {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #007bff;
+  color: #fff;
+  text-align: center;
+  line-height: 30px;
+  font-weight: bold;
+  margin-right: 10px;
 }
 
-img {
-  border-radius: 25px;
+.step-instruction {
+  font-size: 16px;
+  margin-bottom: 10px;
 }
-.screenshot{
+
+.step-description {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.step-action {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.step-action a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.step-action a:hover {
+  text-decoration: underline;
+}
+
+.screenshot {
   border-radius: 50%;
   width: 250px;
   height: 250px;
@@ -36,8 +80,11 @@ img {
   align-items: center;
   display: flex;
 }
-.screenshot img{
+
+img{
+  border-radius: 25px;
+}
+.screenshot img {
   display: block;
   margin: 0 auto;
-  margin-left: 25%;
 }
