@@ -30,10 +30,6 @@ body {
   margin-bottom: 10px;
 }
 
-.step-content {
-  margin-bottom: 10px;
-}
-
 .step-number {
   display: block;
   width: 30px;
@@ -47,18 +43,9 @@ body {
   margin-right: 10px;
 }
 
-.step-instruction {
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-
 .step-description {
   font-size: 16px;
   margin-bottom: 10px;
-}
-
-.step-action a:hover {
-  text-decoration: underline;
 }
 
 .screenshot {

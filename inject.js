@@ -21,8 +21,8 @@
         const loopMadeSvg = document.getElementById("loop-made")
         if (endTime <= currentTime) {
             fadeSvg.classList.add("fade-text")
-            return; 
-        }else{
+            return;
+        } else {
             loopMadeSvg.classList.add("fade-text")
         }
         const newLoopStart = {
@@ -68,7 +68,7 @@
 
             youtubeLeftControls.appendChild(loopBtn);
             loopBtn.addEventListener("click", addNewLoopEventHandler);
-            
+
             // Create range input for loop end time
             loopRange = document.createElement("input");
             loopRange.id = "loop-range"
@@ -96,11 +96,11 @@
 
             youtubePlayer.parentElement.parentElement.appendChild(fadeText)
 
-            fadeText.addEventListener("animationstart", () =>{
+            fadeText.addEventListener("animationstart", () => {
                 fadeText.classList.remove("fade-text-hidden")
             });
-            
-            fadeText.addEventListener("animationend", () =>{
+
+            fadeText.addEventListener("animationend", () => {
                 fadeText.classList.remove("fade-text")
                 fadeText.classList.add("fade-text-hidden")
             });
@@ -113,12 +113,12 @@
 
             youtubePlayer.parentElement.parentElement.appendChild(loopMadeIcon)
 
-            
-            loopMadeIcon.addEventListener("animationstart", () =>{
+
+            loopMadeIcon.addEventListener("animationstart", () => {
                 loopMadeIcon.classList.remove("fade-text-hidden")
             })
 
-            loopMadeIcon.addEventListener("animationend", () =>{
+            loopMadeIcon.addEventListener("animationend", () => {
                 loopMadeIcon.classList.remove("fade-text")
                 loopMadeIcon.classList.add("fade-text-hidden")
             })
@@ -149,7 +149,7 @@
             .join(":");
     };
 
-    chrome.runtime.onMessage.addListener((obj, sender, response) => { 
+    chrome.runtime.onMessage.addListener((obj, sender, response) => {
         const { type, value, videoId, end, id } = obj;
         if (type === "NEW") {
             currentVideo = videoId;
