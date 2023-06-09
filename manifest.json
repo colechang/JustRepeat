@@ -43,7 +43,16 @@
             "assets/play.png",
             "assets/delete.png",
             "assets/errorIcon.svg",
-            "assets/loopMadeIcon.svg"
+            "assets/loopMadeIcon.svg",
+            "assets/justRepeatLogo.png",
+            "assets/loopCompleteScreenshot.png",
+            "assets/loopIncompleteScreenshot.png",
+            "assets/loopScreenshot.png",
+            "assets/popupExample.png",
+            "assets/rangeEndPoint.png",
+            "assets/settings.svg",
+            "assets/donation.svg",
+            "assets/completeYtControls.png"
           ],
           "matches": ["https://*.youtube.com/*"]
         }
