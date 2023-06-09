@@ -35,7 +35,7 @@ body {
 }
 
 .step-number {
-  display: inline-block;
+  display: block;
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -57,7 +57,7 @@ body {
   margin-bottom: 10px;
 }
 
-.step-action {
+/* .step-action {
   font-size: 14px;
   font-weight: bold;
 }
@@ -65,7 +65,7 @@ body {
 .step-action a {
   color: #007bff;
   text-decoration: none;
-}
+} */
 
 .step-action a:hover {
   text-decoration: underline;
@@ -83,6 +83,7 @@ body {
 
 img{
   border-radius: 25px;
+  display: block;
 }
 .screenshot img {
   display: block;

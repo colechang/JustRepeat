@@ -28,8 +28,9 @@
 [x] add indicator to loop button like the not loop error icon
 
 [?] add button on fullscreen to play loop if only 1 loop exists
-[] How to use page
+[~] How to use page
 [x] Edit Markdown page
 [] add images to Markdown page
 [] Different language support -> add settings pages in different languages
 JustRepeat - Youtube Video Looper
+[] Add message to PayPal button

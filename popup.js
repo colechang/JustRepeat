@@ -32,6 +32,7 @@ const viewLoops = (currentVideoLoops = []) => {
     }
   } else {
     loopElement.innerHTML = '<i class="row">No loop set</i>';
+    loopElement.style.fontSize = "20px";
   }
   return;
 };
