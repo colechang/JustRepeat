@@ -1,7 +1,7 @@
 (() => {
     let youtubeLeftControls, youtubePlayer;
     let currentVideo = "";
-    let loopVideoStart = [];
+    let loopVideoStart = []; //array of loops
     let activeTimeUpdateHandler = null; // Reference to the active timeupdate event listener
     let loopRange = null; // Reference to the range input element
 
@@ -13,7 +13,7 @@
             });
         });
     };
-
+    //info attached to every loop and stored in chrome storage to be displayed in popup
     const addNewLoopEventHandler = async () => {
         const currentTime = youtubePlayer.currentTime;
         const endTime = parseFloat(loopRange.value);
@@ -36,9 +36,9 @@
                 toHHMMSS(endTime),
         };
         loopVideoStart = await fetchLoops();
-
+        //store loop in storage to be shown in popup
         chrome.storage.sync.set({
-            [currentVideo]: JSON.stringify([...loopVideoStart, newLoopStart].sort((a, b) => b.time - a.time)),
+            [currentVideo]: JSON.stringify([...loopVideoStart, newLoopStart]),
         });
     };
     //variables and elements loaded on a video loaded
@@ -104,7 +104,7 @@
                 fadeText.classList.remove("fade-text")
                 fadeText.classList.add("fade-text-hidden")
             });
-
+            //create and append element for loop made icon animation 
             const loopMadeIcon = document.createElement("img")
             loopMadeIcon.src = chrome.runtime.getURL("assets/loopMadeIcon.svg")
             loopMadeIcon.id = "loop-made"
@@ -124,6 +124,7 @@
             })
         }
     };
+
     //input range slider
     const onRangeInput = () => {
         input = document.getElementById("loop-range");
@@ -135,18 +136,6 @@
 
         var formattedTime = padZero(hours) + ':' + padZero(minutes) + ':' + padZero(seconds);
         document.getElementById('range-value').innerText = formattedTime;
-    };
-    //format time from seconds to 00:00:00
-    const toHHMMSS = (secs) => {
-        var sec_num = parseInt(secs, 10);
-        var hours = Math.floor(sec_num / 3600);
-        var minutes = Math.floor((sec_num % 3600) / 60);
-        var seconds = sec_num % 60;
-
-        return [hours, minutes, seconds]
-            .map((v) => (v < 10 ? "0" + v : v))
-            .filter((v, i) => v !== "00" || i > 0)
-            .join(":");
     };
 
     chrome.runtime.onMessage.addListener((obj, sender, response) => {
@@ -167,20 +156,36 @@
             };
             youtubePlayer.addEventListener("timeupdate", activeTimeUpdateHandler);
         } else if (type === "DELETE") {
-            loopVideoStart = loopVideoStart.filter((b) => b.loopId !== id);
+            loopVideoStart = loopVideoStart.filter((loop) => loop.loopId != id);
             chrome.storage.sync.set({ [currentVideo]: JSON.stringify(loopVideoStart) });
-            response(loopVideoStart)
 
             if (activeTimeUpdateHandler) {
                 youtubePlayer.removeEventListener("timeupdate", activeTimeUpdateHandler);
             }
+            response(loopVideoStart);
+
         }
     });
-    const generateLoopId = () => {
-        return Math.random().toString(36).substring(2, 9);
-    };
+    newVideoLoaded();
 })();
-
+//formatting function for video time
 function padZero(num) {
     return num.toString().padStart(2, '0');
 }
+//Create Unique Id for every loop created
+function generateLoopId() {
+    return Math.random().toString(36).substring(2, 9);
+};
+
+//format time from seconds to 00:00:00
+function toHHMMSS (secs) {
+    var sec_num = parseInt(secs, 10);
+    var hours = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num % 3600) / 60);
+    var seconds = sec_num % 60;
+
+    return [hours, minutes, seconds]
+        .map((v) => (v < 10 ? "0" + v : v))
+        .filter((v, i) => v !== "00" || i > 0)
+        .join(":");
+};

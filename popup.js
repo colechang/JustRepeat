@@ -11,7 +11,7 @@ const addNewLoop = (loops, loop) => {
 
   setLoopAttributes("play", onPlay, controlsElement);
   setLoopAttributes("delete", onDelete, controlsElement);
-  newLoopElement.id = "loop-" + loop.time;
+  newLoopElement.id = "loop-" + loop.loopId;
   newLoopElement.className = "loop";
   newLoopElement.setAttribute("timestamp", loop.time);
   newLoopElement.setAttribute("endTime", loop.end);
@@ -37,7 +37,7 @@ const viewLoops = (currentVideoLoops = []) => {
   return;
 };
 
-const onPlay = async (e) => {
+const onPlay = async e => {
   const loopTime = e.target.parentNode.parentNode.getAttribute("timestamp");
   const activeTabURL = await getActiveTabURL();
   const loopEndTime = e.target.parentNode.parentNode.getAttribute("endTime");
@@ -63,26 +63,19 @@ const onPlay = async (e) => {
   }
 }
 
-const onDelete = async (e) => {
+const onDelete = async e => {
   const activeTabURL = await getActiveTabURL();
-  const loopTime = e.target.parentNode.parentNode.getAttribute("timestamp");
-  const loopEndTime = e.target.parentNode.parentNode.getAttribute("endTime");
   const loopId = e.target.parentNode.parentNode.getAttribute("loop-id");
-  const loopElementToDelete = e.target.parentNode.parentNode;
-  loopElementToDelete.parentNode.removeChild(loopElementToDelete);
-
-  // Send message to content script to delete the loop
+  const elementToDelete = document.getElementById("loop-"+loopId)
+  elementToDelete.parentNode.removeChild(elementToDelete);
   chrome.tabs.sendMessage(activeTabURL.id, {
     type: "DELETE",
-    value: loopTime,
-    end: loopEndTime,
-    id: loopId
+    id: loopId,
   }, viewLoops);
 };
 
 const setLoopAttributes = (src, eventListener, controlParentElement) => {
   const controlElement = document.createElement("img");
-  // controlElement.id = src;
   controlElement.src = "assets/" + src + ".png";
   controlElement.title = src;
   controlElement.addEventListener("click", eventListener);
@@ -104,6 +97,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   } else {
     const container = document.getElementsByClassName("container")[0];
+
     container.innerHTML = '<div class="title">This is not a YouTube video page.</div>';
   }
 });

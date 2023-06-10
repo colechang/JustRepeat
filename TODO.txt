@@ -33,3 +33,4 @@
 [] Different language support -> add settings pages in different languages
 JustRepeat - Youtube Video Looper
 [x] Add message to PayPal button
+[] Find BUGS
