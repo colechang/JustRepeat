@@ -24,7 +24,8 @@
         {
         "matches":["https://*.youtube.com/*"],
         "css": ["inject.css"],
-        "js":["inject.js"]
+        "js":["inject.js"],
+        "run_at":"document_idle"
         }
     ],
     "background":{
