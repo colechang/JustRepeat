@@ -147,11 +147,6 @@
     };
 
     chrome.runtime.onMessage.addListener((obj, sender, response) => {
-        /*//error checking
-        chrome.runtime.sendMessage({message: "messageSent"}, function (response) {
-            console.log(response);
-        });*/
-
         const { type, value, videoId, end, id } = obj;
         if (type === "NEW") {
             currentVideo = videoId;
