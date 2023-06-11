@@ -29,7 +29,6 @@ const viewLoops = (currentVideoLoops = []) => {
     for (let i = 0; i < currentVideoLoops.length; i++) {
       const loop = currentVideoLoops[i];
       addNewLoop(loopElement, loop);
-      console.log(currentVideoLoops[i]);
     }
   } else {
     loopElement.innerHTML = '<i class="row">No loop set</i>';

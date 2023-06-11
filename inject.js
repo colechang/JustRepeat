@@ -36,9 +36,17 @@
                 toHHMMSS(endTime),
         };
         loopVideoStart = await fetchLoops();
+        loopVideoStart.push(newLoopStart)
         //store loop in storage to be shown in popup
         chrome.storage.sync.set({
-            [currentVideo]: JSON.stringify([...loopVideoStart, newLoopStart]),
+            [currentVideo]:JSON.stringify(loopVideoStart),
+        },() => {
+            loopVideoStart.sort((a,b)=>a.time-b.time);
+            loopVideoStart = [...loopVideoStart];
+            chrome.runtime.sendMessage({
+                type:"UPDATE_BOOKMARKS",
+                loops:loopVideoStart,
+            });
         });
     };
     //variables and elements loaded on a video loaded
@@ -139,10 +147,10 @@
     };
 
     chrome.runtime.onMessage.addListener((obj, sender, response) => {
-
+        /*//error checking
         chrome.runtime.sendMessage({message: "messageSent"}, function (response) {
             console.log(response);
-        });
+        });*/
 
         const { type, value, videoId, end, id } = obj;
         if (type === "NEW") {
@@ -168,7 +176,6 @@
                 youtubePlayer.removeEventListener("timeupdate", activeTimeUpdateHandler);
             }
             response(loopVideoStart);
-
         }
     });
     newVideoLoaded();
