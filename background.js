@@ -9,3 +9,17 @@ chrome.tabs.onUpdated.addListener((tabId,tab)=>{
         });
     }
 });
+//clear chrome storage once the user leaves a webpage
+chrome.tabs.onRemoved.addListener((tabId,removeInfo)=>{
+
+    chrome.storage.sync.get(null,(data)=>{
+
+        for (const key in data){
+            if(data.hasOwnProperty(key) && data[key].tabId === tabId){
+                chrome.storage.sync.remove(key,()=>{
+                    console.log("Data for tab ${tabId} removed from Storage.");
+                });
+            }
+        }
+    });
+});

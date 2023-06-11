@@ -48,7 +48,7 @@
         loopVideoStart = await fetchLoops();
 
         if (!loopBtnExists) {
-
+            
             //Css file for loop Btn and input slider
             const cssLink = document.createElement("link")
             cssLink.rel = "stylesheet";
@@ -139,6 +139,11 @@
     };
 
     chrome.runtime.onMessage.addListener((obj, sender, response) => {
+
+        chrome.runtime.sendMessage({message: "messageSent"}, function (response) {
+            console.log(response);
+        });
+
         const { type, value, videoId, end, id } = obj;
         if (type === "NEW") {
             currentVideo = videoId;
@@ -156,7 +161,7 @@
             };
             youtubePlayer.addEventListener("timeupdate", activeTimeUpdateHandler);
         } else if (type === "DELETE") {
-            loopVideoStart = loopVideoStart.filter((loop) => loop.loopId != id);
+            loopVideoStart = loopVideoStart.filter(loop => loop.loopId !== id);
             chrome.storage.sync.set({ [currentVideo]: JSON.stringify(loopVideoStart) });
 
             if (activeTimeUpdateHandler) {
@@ -173,6 +178,7 @@ function padZero(num) {
     return num.toString().padStart(2, '0');
 }
 //Create Unique Id for every loop created
+//returns a string
 function generateLoopId() {
     return Math.random().toString(36).substring(2, 9);
 };

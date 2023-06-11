@@ -29,6 +29,7 @@ const viewLoops = (currentVideoLoops = []) => {
     for (let i = 0; i < currentVideoLoops.length; i++) {
       const loop = currentVideoLoops[i];
       addNewLoop(loopElement, loop);
+      console.log(currentVideoLoops[i]);
     }
   } else {
     loopElement.innerHTML = '<i class="row">No loop set</i>';
@@ -37,7 +38,7 @@ const viewLoops = (currentVideoLoops = []) => {
   return;
 };
 
-const onPlay = async e => {
+const onPlay = async (e) => {
   const loopTime = e.target.parentNode.parentNode.getAttribute("timestamp");
   const activeTabURL = await getActiveTabURL();
   const loopEndTime = e.target.parentNode.parentNode.getAttribute("endTime");
@@ -63,18 +64,21 @@ const onPlay = async e => {
   }
 }
 
-const onDelete = async e => {
+const onDelete = async (e) => {
   const activeTabURL = await getActiveTabURL();
   const loopId = e.target.parentNode.parentNode.getAttribute("loop-id");
-  const elementToDelete = document.getElementById("loop-"+loopId)
-  elementToDelete.parentNode.removeChild(elementToDelete);
+  const elementToDelete = document.getElementById("loop-" + loopId)
+  if(elementToDelete){
+    elementToDelete.parentNode.removeChild(elementToDelete);
+  }
+
   chrome.tabs.sendMessage(activeTabURL.id, {
     type: "DELETE",
     id: loopId,
   }, viewLoops);
 };
 
-const setLoopAttributes = (src, eventListener, controlParentElement) => {
+const setLoopAttributes = (src, eventListener, controlParentElement, loopId) => {
   const controlElement = document.createElement("img");
   controlElement.src = "assets/" + src + ".png";
   controlElement.title = src;

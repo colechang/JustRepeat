@@ -84,11 +84,12 @@ img {
   position: relative;
   top: 6px
 }
-.header-image{
-  width:100px;
-  height:60px;
+
+.header-image {
+  width: 100px;
+  height: 60px;
   display: inline-block;
   position: relative;
-  top:10px;
-  border-radius:20px;
+  top: 10px;
+  border-radius: 20px;
 }

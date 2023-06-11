@@ -34,3 +34,4 @@
 JustRepeat - Youtube Video Looper
 [x] Add message to PayPal button
 [] Find BUGS
+[] Prevent extension from working on Ads

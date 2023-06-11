@@ -17,7 +17,8 @@
     },
     "permissions":[
         "tabs",
-        "storage"
+        "storage",
+        "nativeMessaging"
     ],
     "host_permissions":["https://*.youtube.com/*"],
     "content_scripts":[
