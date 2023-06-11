@@ -36,7 +36,7 @@ If you encounter any issues while using the Just Repeat extension, try the follo
 - Restart Google Chrome and try again.
 - Disable any conflicting extensions and see if the issue persists.
 - Clear your browser cache and cookies.
-- If the problem persists, contact our support team at support@justrepeat.com.
+- If the problem persists, contact our support team at justrepeat@googlegroups.com..
 
 ## Known Issues and Limitations
 
@@ -59,7 +59,7 @@ We take your privacy seriously. The Just Repeat extension does not collect any p
 
 ## Contributing
 
-Contributions to the Just Repeat project are welcome! If you find any issues or have suggestions for improvements, feel free to open an issue or submit a pull request. Please follow the guidelines in the [CONTRIBUTING.md](https://github.com/justrepeat/justrepeat/blob/main/CONTRIBUTING.md) file.
+Contributions to the Just Repeat project are welcome! If you find any issues or have suggestions for improvements, feel free to open an issue or submit a pull request. Please follow the guidelines in the [CONTRIBUTING.md](https://github.com/colechang/JustRepeat/blob/main/CONTRIBUTING.MD) file.
 
 ## License
 
