@@ -35,4 +35,7 @@ JustRepeat - Youtube Video Looper
 [x] Add message to PayPal button
 [] Find BUGS
 [] Prevent extension from working on Ads
-[] Ctrl + Shift + T wont reload extension again bug
+[x] Ctrl + Shift + T wont reload extension again bug
+[] add feature Turn off all loops -- not delete, but make none active
+[?] Label Loops
+[] chrome extension shop webpage

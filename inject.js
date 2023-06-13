@@ -1,5 +1,6 @@
 (() => {
-    let youtubeLeftControls, youtubePlayer;
+    let youtubeLeftControls 
+    let youtubePlayer;
     let currentVideo = "";
     let loopVideoStart = []; //array of loops
     let activeTimeUpdateHandler = null; // Reference to the active timeupdate event listener
@@ -19,6 +20,7 @@
         const endTime = parseFloat(loopRange.value);
         const fadeSvg = document.getElementById("fade-text")
         const loopMadeSvg = document.getElementById("loop-made")
+
         if (endTime <= currentTime) {
             fadeSvg.classList.add("fade-text")
             return;
@@ -41,10 +43,9 @@
         chrome.storage.sync.set({
             [currentVideo]:JSON.stringify(loopVideoStart),
         },() => {
-            loopVideoStart.sort((a,b)=>a.time-b.time);
             loopVideoStart = [...loopVideoStart];
             chrome.runtime.sendMessage({
-                type:"UPDATE_BOOKMARKS",
+                type:"UPDATE_LOOPS",
                 loops:loopVideoStart,
             });
         });

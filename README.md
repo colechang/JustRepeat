@@ -52,10 +52,9 @@ If you encounter any issues while using the Just Repeat extension, try the follo
 ### Version 1.1.0
 - Added support for YouTube playlists.
 - Improved loop playback performance.
+<!--## Privacy Policy
 
-## Privacy Policy
-
-We take your privacy seriously. The Just Repeat extension does not collect any personal information or data from your browsing activity. For more details, please read our [Privacy Policy](https://justrepeat.com/privacy).
+We take your privacy seriously. The Just Repeat extension does not collect any personal information or data from your browsing activity. For more details, please read our [Privacy Policy](https://justrepeat.com/privacy).-->
 
 ## Contributing
 

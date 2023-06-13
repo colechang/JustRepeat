@@ -1,29 +1,29 @@
-let currentLoops={}
+let currentLoops = {}
 
-chrome.runtime.onMessage.addListener((message, sender)=>{
-    if(message.type === "UPDATE_BOOKMARKS"){
-        currentLoops=message.loops
+chrome.runtime.onMessage.addListener((message, sender) => {
+    if (message.type === "UPDATE_LOOPS") {
+        currentLoops = message.loops
     }
 })
 
 
-chrome.tabs.onUpdated.addListener((tabId,tab)=>{
-    if(tab.url && tab.url.includes("youtube.com/watch")){
+chrome.tabs.onUpdated.addListener((tabId, tab) => {
+    if (tab.url && tab.url.includes("youtube.com/watch")) {
         const queryParameters = tab.url.split("?")[1];
-        const urlParameters= new URLSearchParams(queryParameters);
+        const urlParameters = new URLSearchParams(queryParameters);
 
-        chrome.tabs.sendMessage(tabId,{
-            type:"NEW",
-            videoId:urlParameters.get("v"),
+        chrome.tabs.sendMessage(tabId, {
+            type: "NEW",
+            videoId: urlParameters.get("v"),
         });
     }
 });
 //clear chrome storage once the user leaves a webpage
-chrome.tabs.onRemoved.addListener((tabId,removeInfo)=>{
-    chrome.storage.sync.get(null,(data)=>{
-        for (const key in data){
-            if(data.hasOwnProperty(key) && data[key].tabId === tabId){
-                chrome.storage.sync.remove(key,()=>{
+chrome.tabs.onRemoved.addListener((tabId, removeInfo) => {
+    chrome.storage.sync.get(null, (data) => {
+        for (const key in data) {
+            if (data.hasOwnProperty(key) && data[key].tabId === tabId) {
+                chrome.storage.sync.remove(key, () => {
                     console.log("Data for tab ${tabId} removed from Storage.");
                 });
             }
@@ -31,8 +31,8 @@ chrome.tabs.onRemoved.addListener((tabId,removeInfo)=>{
     });
 });
 
-chrome.runtime.onConnect.addListener((port) =>{
-    if(port.name ==="loopPort"){
-        port.portMessage({loops: currentLoops});
+chrome.runtime.onConnect.addListener((port) => {
+    if (port.name === "loopPort") {
+        port.portMessage({ loops: currentLoops });
     }
 });

@@ -5,6 +5,7 @@ const addNewLoop = (loops, loop) => {
   const controlsElement = document.createElement("div");
   const newLoopElement = document.createElement("div");
 
+
   loopTitleElement.textContent = loop.desc;
   loopTitleElement.className = "loop-title";
   controlsElement.className = "loop-controls";
@@ -67,7 +68,7 @@ const onDelete = async (e) => {
   const activeTabURL = await getActiveTabURL();
   const loopId = e.target.parentNode.parentNode.getAttribute("loop-id");
   const elementToDelete = document.getElementById("loop-" + loopId)
-  if(elementToDelete){
+  if (elementToDelete) {
     elementToDelete.parentNode.removeChild(elementToDelete);
   }
 
