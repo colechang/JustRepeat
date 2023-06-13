@@ -49,7 +49,7 @@ If you encounter any issues while using the Just Repeat extension, try the follo
 ### Version 1.0.0
 - Initial release of the Just Repeat extension.
 
-### Version 1.1.0
+### Version 1.0.1
 - Added support for YouTube playlists.
 - Improved loop playback performance.
 <!--## Privacy Policy

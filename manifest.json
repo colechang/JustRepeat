@@ -1,62 +1,71 @@
 {
-    "name": "Just Repeat",
-    "version": "1.1.0",
-    "description": "Extension to repeat certain points of a youtube video. So we can enjoy all the good stuff",
-    "manifest_version": 3,
-    "author": "Cole Chang",
-    "action": {
-        "default_icon":{
-          "16": "assets/justRepeatLogo16.png",
-          "24": "assets/justRepeatLogo24.png",
-          "32": "assets/justRepeatLogo32.png",
-          "48": "assets/justRepeatLogo48.png",
-          "128": "assets/justRepeatLogo128.png"
-        },
-        "default_popup": "popup.html",
-        "default_title":"Just Repeat"
+  "name": "Just Repeat",
+  "version": "1.0.1",
+  "description": "Extension to repeat certain points of a youtube video. So we can enjoy all the good stuff",
+  "manifest_version": 3,
+  "author": "Cole Chang",
+  "action": {
+    "default_icon": {
+      "16": "assets/justRepeatLogo16.png",
+      "24": "assets/justRepeatLogo24.png",
+      "32": "assets/justRepeatLogo32.png",
+      "48": "assets/justRepeatLogo48.png",
+      "128": "assets/justRepeatLogo128.png"
     },
-    "permissions":[
-        "tabs",
-        "storage",
-        "nativeMessaging"
-    ],
-    "host_permissions":["https://*.youtube.com/*"],
-    "content_scripts":[
-        {
-        "matches":["https://*.youtube.com/*"],
-        "css": ["inject.css"],
-        "js":["inject.js"],
-        "run_at":"document_idle"
-        }
-    ],
-    "background":{
-        "service_worker": "background.js"
-    },
-    "icons":{
-      "16":"assets/justRepeatLogo16.png",
-      "32":"assets/justRepeatLogo32.png",
-      "48":"assets/justRepeatLogo48.png",
-      "128":"assets/justRepeatLogo128.png"
-    },
-    "web_accessible_resources": [
-        {
-          "resources": [
-            "assets/loop.png",
-            "assets/play.png",
-            "assets/delete.png",
-            "assets/errorIcon.svg",
-            "assets/loopMadeIcon.svg",
-            "assets/justRepeatLogo.png",
-            "assets/loopCompleteScreenshot.png",
-            "assets/loopIncompleteScreenshot.png",
-            "assets/loopScreenshot.png",
-            "assets/popupExample.png",
-            "assets/rangeEndPoint.png",
-            "assets/settings.svg",
-            "assets/donation.svg",
-            "assets/completeYtControls.png"
-          ],
-          "matches": ["https://*.youtube.com/*"]
-        }
+    "default_popup": "popup.html",
+    "default_title": "Just Repeat"
+  },
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://*.youtube.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.youtube.com/*"
+      ],
+      "css": [
+        "inject.css"
+      ],
+      "js": [
+        "inject.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "assets/justRepeatLogo16.png",
+    "32": "assets/justRepeatLogo32.png",
+    "48": "assets/justRepeatLogo48.png",
+    "128": "assets/justRepeatLogo128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/loop.png",
+        "assets/play.png",
+        "assets/delete.png",
+        "assets/errorIcon.svg",
+        "assets/loopMadeIcon.svg",
+        "assets/justRepeatLogo.png",
+        "assets/loopCompleteScreenshot.png",
+        "assets/loopIncompleteScreenshot.png",
+        "assets/loopScreenshot.png",
+        "assets/popupExample.png",
+        "assets/rangeEndPoint.png",
+        "assets/settings.svg",
+        "assets/donation.svg",
+        "assets/completeYtControls.png"
+      ],
+      "matches": [
+        "https://*.youtube.com/*"
       ]
-}   
+    }
+  ]
+}

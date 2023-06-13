@@ -39,3 +39,4 @@ JustRepeat - Youtube Video Looper
 [] add feature Turn off all loops -- not delete, but make none active
 [?] Label Loops
 [] chrome extension shop webpage
+[] organize files
