@@ -40,3 +40,4 @@ JustRepeat - Youtube Video Looper
 [?] Label Loops
 [] chrome extension shop webpage
 [] organize files
+[] Create final zip folder of necessary files
