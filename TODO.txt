@@ -39,5 +39,10 @@ JustRepeat - Youtube Video Looper
 [] add feature Turn off all loops -- not delete, but make none active
 [?] Label Loops
 [] chrome extension shop webpage
-[] organize files
-[] Create final zip folder of necessary files
+[x] organize files
+[x] Create final zip folder of necessary files
+[] future feature -> 2 input range slider for start and end point, but keep input slider on video bar
+00:00 ----o-----o--- Duration 
+[] future-feature -> add start and end markers on main input slider 
+         !           ! 
+    -------------------------

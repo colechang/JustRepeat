@@ -2,6 +2,17 @@
 
 Just Repeat is a browser extension that allows you to loop specific sections of YouTube videos. It provides a user-friendly interface to mark the start and end times for each loop and automatically plays the video from the start time when the end time is reached.
 
+## How To Use
+1. Open a YouTube video in your browser
+2. Drag the range slider to select the end time of the loop<br/><br/><img src="assets/rangeEndPoint.png" style="border-radius:25px;" height="50%" width="50%">
+3. Click on the Loop button to create a loop at the Youtube Player current time<br/><br/><img src="assets/loopScreenshot.png" style="border-radius:25px;" height="30%" width="30%">
+4. The complete icon will appear if the loop was successfully made<br/><br/><img src = "assets/loopMadeIcon.svg" width = "150px" height=150px;>
+5. The error icon will appear if the loop was unsuccessful<br/><br/><img src = "assets/errorIcon.svg" width = "150px" height=150px;>
+6. Click on the extension popup to view your loops <br/><br/> <img src = "assets/popupExample.png" width="60%" height="60%">
+ * The selected loop will be added to the list of loops for the current video in the extension popup
+ * To **DELETE** a loop, click on the delete button <span style = "vertical-align: middle;"><img src = "assets/delete.png" width = "25px" height="25px" border-radius = "50px"></span> next to it in the loops list
+ * To **SELECT AND PLAY** a loop, click on the play a button <span style = "vertical-align: middle;"><img src = "assets/play.png" width = "25px" height="25px" border-radius = "50px"></span> next to it in the loops list
+
 ## Features
 
 - Add loops to YouTube videos by clicking the loop button.
@@ -36,7 +47,7 @@ If you encounter any issues while using the Just Repeat extension, try the follo
 - Restart Google Chrome and try again.
 - Disable any conflicting extensions and see if the issue persists.
 - Clear your browser cache and cookies.
-- If the problem persists, contact our support team at justrepeat@googlegroups.com..
+- If the problem persists, contact our support team at thejustrepeat@gmail.com.
 
 ## Known Issues and Limitations
 
@@ -52,9 +63,6 @@ If you encounter any issues while using the Just Repeat extension, try the follo
 ### Version 1.0.1
 - Added support for YouTube playlists.
 - Improved loop playback performance.
-<!--## Privacy Policy
-
-We take your privacy seriously. The Just Repeat extension does not collect any personal information or data from your browsing activity. For more details, please read our [Privacy Policy](https://justrepeat.com/privacy).-->
 
 ## Contributing
 
