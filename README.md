@@ -8,7 +8,7 @@ Just Repeat is a browser extension that allows you to loop specific sections of 
 3. Click on the Loop button to create a loop at the Youtube Player current time<br/><br/><img src="assets/loopScreenshot.png" style="border-radius:25px;" height="30%" width="30%">
 4. The complete icon will appear if the loop was successfully made<br/><br/><img src = "assets/loopMadeIcon.svg" width = "150px" height=150px;>
 5. The error icon will appear if the loop was unsuccessful<br/><br/><img src = "assets/errorIcon.svg" width = "150px" height=150px;>
-6. Click on the extension popup to view your loops <br/><br/> <img src = "assets/popupExample.png" width="60%" height="60%">
+6. Click on the extension popup to view your loops <br/><br/> <img src = "assets/popupExample.png" width="50%" height="50%">
  * The selected loop will be added to the list of loops for the current video in the extension popup
  * To **DELETE** a loop, click on the delete button <span style = "vertical-align: middle;"><img src = "assets/delete.png" width = "25px" height="25px" border-radius = "50px"></span> next to it in the loops list
  * To **SELECT AND PLAY** a loop, click on the play a button <span style = "vertical-align: middle;"><img src = "assets/play.png" width = "25px" height="25px" border-radius = "50px"></span> next to it in the loops list
