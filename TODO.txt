@@ -43,6 +43,6 @@ JustRepeat - Youtube Video Looper
 [x] Create final zip folder of necessary files
 [] future feature -> 2 input range slider for start and end point, but keep input slider on video bar
 00:00 ----o-----o--- Duration 
-[] future-feature -> add start and end markers on main input slider 
+[] future-feature -> add start and end markers on main Youtube range slider 
          !           ! 
     -------------------------
