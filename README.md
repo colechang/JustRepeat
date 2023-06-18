@@ -2,6 +2,9 @@
 
 Just Repeat is a browser extension that allows you to loop specific sections of YouTube videos. It provides a user-friendly interface to mark the start and end times for each loop and automatically plays the video from the start time when the end time is reached.
 
+Checkout the extension on the Google Chrome Webstore
+https://chrome.google.com/webstore/detail/just-repeat-looper-for-yo/jmoebgdejlijpadniimglmjbbmpkieno
+
 ## How To Use
 1. Open a YouTube video in your browser
 2. Drag the range slider to select the end time of the loop<br/><br/><img src="assets/rangeEndPoint.png" style="border-radius:25px;" height="50%" width="50%">
