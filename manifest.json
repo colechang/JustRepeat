@@ -1,6 +1,6 @@
 {
-  "name": "Just Repeat",
-  "version": "1.0.1",
+  "name": "Just Repeat - Looper for YouTube",
+  "version": "1.0.2",
   "description": "Extension to repeat certain points of a youtube video. So we can enjoy all the good stuff",
   "manifest_version": 3,
   "author": "Cole Chang",
