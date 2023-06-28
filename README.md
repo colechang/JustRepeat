@@ -1,4 +1,5 @@
 # Just Repeat -- YouTube Video Looper
+<img src = "assets\justRepeatLogo.png" height="50%" width="50%">
 
 Just Repeat is a browser extension that allows you to loop specific sections of YouTube videos. It provides a user-friendly interface to mark the start and end times for each loop and automatically plays the video from the start time when the end time is reached.
 
